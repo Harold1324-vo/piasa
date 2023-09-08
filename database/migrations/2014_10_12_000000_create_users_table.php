@@ -11,9 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //Deshabilita la llave foranea
-        Schema::disableForeignKeyConstraints();
-
         Schema::create('users', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name')->unique();
@@ -28,14 +25,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            //Columna
-            $table->unsignedBigInteger('idRol');
-            $table->foreign('idRol')->references('id')->on('roles');
-
             $table->timestamps();
         });
-        //Habilita las llaves foraneas
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
