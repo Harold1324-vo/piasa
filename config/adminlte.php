@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'PIASA',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -85,8 +85,8 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/logoCondusef.png',
-            'alt' => 'Auth Logo',
+            'path' => 'https://www.consumoteca.com.mx/wp-content/uploads/Logo-de-Consusef.jpg',
+            'alt' => 'PIASA Logo',
             'class' => '',
             'width' => 50,
             'height' => 50,
@@ -106,13 +106,13 @@ return [
     */
 
     'preloader' => [
-        'enabled' => false,
+        'enabled' => true,
         'img' => [
-            'url' => 'vendor/adminlte/dist/img/logoCondusef.png',
-            'alt' => 'AdminLTE Preloader Image',
+            'path' => 'vendor/adminlte/dist/img/logo.png',
+            'alt' => 'PIASA Preloader Image',
             'effect' => 'animation__shake',
-            'width' => 60,
-            'height' => 60,
+            'width' => 500,
+            'height' => 300,
         ],
     ],
 
@@ -149,8 +149,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -252,7 +252,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'sistema',
+    'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -306,13 +306,8 @@ return [
             'text' => 'Buscar',
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
             'text'        => 'Gráficas',
-            'url'         => 'sistema',
+            'url'         => 'home',
             'icon'        => 'fas fa-fw fa-chart-pie',
             'label_color' => 'success',
         ],
@@ -320,12 +315,18 @@ return [
         [
             'text' => 'Usuarios',
             'url'  => 'usuario',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fa fa-users',
         ],
         [
             'text' => 'Sistemas',
             'url'  => 'sistema',
             'icon' => 'fa fa-desktop',
+            'can' => 'ver-procesos',
+        ],
+        [
+            'text' => 'Roles',
+            'url'  => 'roles',
+            'icon' => 'fa fa-user-lock',
         ],
         /* [
             'text'    => 'Reportes',

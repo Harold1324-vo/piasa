@@ -63,7 +63,7 @@ class LoginController extends Controller
 
 
     protected function sendLockedResponse(){
-        return redirect()->route('bloqueado');
+        return redirect()->route('usuarioBloqueado');
     }
 
 

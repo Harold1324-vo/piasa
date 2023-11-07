@@ -18,5 +18,6 @@ class Sistema extends Model
         'areaDesarrolladora',
         'estadoActivo',
         'url',
+        'consecutivo',
     ];    
 }

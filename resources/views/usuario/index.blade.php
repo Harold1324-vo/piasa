@@ -17,16 +17,16 @@
                             data-href es para indicar que ruta debe ocupar
                             el ID es un identificador-->
                             @can('crear-usuario')
-                            <a class="btn btn-primary" href="{{ route('usuario.create') }}">+ Nuevo</a>
+                            <a class="btn btn-primary" href="{{ route('usuario.create') }}"><i class="fa fa-user-plus"> </i></a>
                             @endcan
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container py-4">
+        <div class="table-responsive container py-4">
             <table class="table table-striped table-hover">
 
-                <thead>
+                <thead class="table-dark">
                     <th>ID</th>
                     <th>Usuario</th>
                     <th>Nombre</th>
@@ -35,14 +35,14 @@
                     <th>Puesto</th>
                     <th>Area Adscripción</th>
                     <th>Estado</th>
-                    <th>Email</th>
+                    <th>Correo Electónico</th>
                     <th>Rol</th>
-                    <th></th>
-                    <th></th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
                 </thead>
 
                 <tbody>
-                    @foreach($User as $Users)
+                    @foreach($usuarios as $Users)
                     <tr>
                         <td>{{ $Users->id }}</td>
                         <td>{{ $Users->name}}</td>
@@ -60,18 +60,21 @@
                             @endif
                         </td>
                         <td><a href="{{ url('usuario/'.$Users->id.'/edit')}}" 
-                        class="btn btn-warning btn-sm"><!-- Editar --><i class="fas fa-fw fa-chart-pie"></i></a></td>
+                        class="btn btn-warning"><!-- Editar --><i class="fas fa-user-edit"></i></a></td>
                         <td>
                             <form action="{{ url('usuario/'.$Users->id) }}" method="post">
                                 @method("DELETE")
                                 @csrf
-                                <button type="submit" class="btn btn-danger btn-sm"><!-- Eliminar --><i class="fas fa-fw fa-chart-pie"></i></button>
+                                <button type="submit" class="btn btn-danger"><!-- Eliminar --><i class="fa fa-user-times"></i></button>
                             </form>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+            <div class="pagination justify-content-end">
+                {!! $usuarios->links() !!}
+            </div>
         </div>
     </div>
 </div>
