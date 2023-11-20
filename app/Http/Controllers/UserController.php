@@ -8,6 +8,8 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\FuncCall;
 
 class UserController extends Controller
 {
@@ -61,9 +63,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $sistema)
+    public function show()
     {
         //
+        return view('usuario.updatePassword');
     }
 
     /**
@@ -124,5 +127,59 @@ class UserController extends Controller
     public function usuarioBloqueado()
     {
         return view('usuario.bloqueado');
+    }
+
+    public function verDatosUsuario(){
+        // Obtén el usuario autenticado
+        $usuarioAutenticado = Auth::user();
+
+        // Puedes verificar si hay un usuario autenticado antes de continuar
+        if ($usuarioAutenticado) {
+            // Aquí puedes acceder a las propiedades del usuario
+            $nombre = $usuarioAutenticado->nombre;
+            $apellidoPaterno = $usuarioAutenticado->apellidoPaterno;
+            $apellidoMaterno = $usuarioAutenticado->apellidoMaterno;
+            $puesto = $usuarioAutenticado->puesto;
+            $areaAdscripcion = $usuarioAutenticado->areaAdscripcion;
+            $email = $usuarioAutenticado->email;
+            $name = $usuarioAutenticado->name;
+
+            // También puedes cargar estos datos en una vista
+            return view('usuario.verDatosUsuario', [
+                'nombre' => $nombre, 
+                'apellidoPaterno' => $apellidoPaterno,
+                'apellidoMaterno' => $apellidoMaterno,
+                'puesto' => $puesto,
+                'areaAdscripcion' => $areaAdscripcion,
+                'email' => $email,
+                'name' => $name,
+            ]);
+        } else {
+            // Manejar el caso en el que no hay usuario autenticado
+            return redirect('/home');
+        }
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+        ],
+        [
+            'contrasenia_actual.required' => 'El campo Contraseña Actual es obligatorio.',
+            'contrasenia_actual.regex' => 'La Contraseña Actual no coincide.',
+
+          
+        ]);
+ 
+        $user = Auth::user();
+
+        if (!Hash::check($request->contrasenia_actual, $user->password)) {
+            return redirect()->back()->withErrors(['contrasenia_actual' => 'La contraseña actual no coincide.']);
+        }
+
+        $user->password = Hash::make($request->contrasenia_nueva);
+        $user->save();
+
+        return redirect()->back()->with('success_cambio_contrasenia', '¡Contraseña cambiada exitosamente!');
     }
 }

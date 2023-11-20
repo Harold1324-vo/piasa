@@ -34,4 +34,5 @@ class Informacion extends Model
     public function Sistema(){
         return $this->belongsTo(Sistema::class, 'idSistema');
     }
+    
 }

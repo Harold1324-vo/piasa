@@ -85,6 +85,9 @@
                                                 @endif
                                                 <a href="{{ $sistemas->url }}" target="_blank">{{ $sistemas->url }}</a>
                                             </div>
+                                            <div class="card-body">
+                                                <a href="{{route('grafica.graficaDocumentacionCompleta', $sistemas->id)}}">Ver gráficas</a>
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach

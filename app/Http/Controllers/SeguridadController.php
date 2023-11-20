@@ -70,17 +70,44 @@ class SeguridadController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Seguridad $seguridad)
+    public function edit($id)
     {
-        //
+        // Encuentra el sistema con sus roles
+        $sistema = Sistema::with('seguridad')->findOrFail($id);
+
+        // Pasa el sistema a la vista
+        return view('sistema.edit', compact('sistema'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Seguridad $seguridad)
+    public function update(Request $request, $id)
     {
-        //
+        // Busca el sistema
+        $sistema = Sistema::findOrFail($id);
+
+        // Valida los datos del formulario
+        $request->validate([
+            'determinarRoles' => 'required',
+            'procesoBorrado' => 'required',
+            'controlAcceso' => 'required',
+            'conocimientoPrincipios' => 'required',
+            'protocoloSeguridad' => 'required',
+        ]);
+
+        // Busca y actualiza el rolSistemas existente
+        $seguridad = Seguridad::where('idSistema', $sistema->id)->first();
+
+        $seguridad->determinarRoles = $request->input('determinarRoles');
+        $seguridad->procesoBorrado = $request->input('procesoBorrado');
+        $seguridad->controlAcceso = $request->input('controlAcceso');
+        $seguridad->conocimientoPrincipios = $request->input('conocimientoPrincipios');
+        $seguridad->protocoloSeguridad = $request->input('protocoloSeguridad');
+
+        $seguridad->save();
+
+        return redirect()->back()->with('Mensaje', 'Datos actualizados correctamente');
     }
 
     /**

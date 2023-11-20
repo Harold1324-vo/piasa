@@ -416,7 +416,11 @@
                                                         </div>
                                                     @endif
 
-                                                    {!! Form::open(['url' => route('documento.store', ['id' => $sistema->id]), 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                                                    {!! Form::open([
+                                                        'url' => route('documento.store', ['id' => $sistema->id]),
+                                                        'method' => 'POST',
+                                                        'enctype' => 'multipart/form-data',
+                                                    ]) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
                                                             <div class="form-group">
@@ -464,19 +468,18 @@
                                                     </div>
 
                                                     <h4>Subir Documentación del Sistema.</h4>
-                                                    
-                                                        <div class="row">
-                                                            @for ($i = 0; $i < count($nombresArchivos); $i++)
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label
-                                                                            for="archivo{{ $i }}">{{ $nombresArchivos[$i] }}</label>
-                                                                        {!! Form::file('nombreArchivo[]', ['class' => 'form-control', 'multiple' => true, 'id' => "archivo{$i}"]) !!}
 
-                                                                    </div>
+                                                    <div class="row">
+                                                        @for ($i = 0; $i < count($nombresArchivos); $i++)
+                                                            <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
+                                                                <div class="form-group">
+                                                                    <label
+                                                                        for="archivo{{ $i }}">{{ $nombresArchivos[$i] }}</label>
+                                                                    {!! Form::file('nombreArchivo[]', ['class' => 'form-control', 'multiple' => true, 'id' => "archivo{$i}"]) !!}
+
                                                                 </div>
-                                                            @endfor
-                                                        </div>
+                                                            </div>
+                                                        @endfor
                                                     </div>
                                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                         <input class="btn btn-info" style="margin: 1%" type="reset"
@@ -490,7 +493,6 @@
                                         </div>
                                     </div>
                                 </div>
-
 
 
                                 <div class="carousel-item">
@@ -512,7 +514,7 @@
                                                             </button>
                                                         </div>
                                                     @endif
-
+    
                                                     {!! Form::open(['route' => ['seguridad.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
@@ -579,7 +581,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+    
                                 <div class="carousel-item">
                                     <h3 class="page__heading" style="padding: 1%;">Datos Personales Incluidos en el
                                         Sistema.</h3>
@@ -592,8 +594,7 @@
                                                             role="alert">
                                                             <strong>¡Revise los campos!</strong>
                                                             @foreach ($errors->all() as $error)
-                                                                <span
-                                                                    class="badge badge-danger">{{ $error }}</span>
+                                                                <span class="badge badge-danger">{{ $error }}</span>
                                                             @endforeach
                                                             <button type="button" class="close" data-dismiss="alert"
                                                                 aria-label="Close">
@@ -601,7 +602,7 @@
                                                             </button>
                                                         </div>
                                                     @endif
-
+    
                                                     {!! Form::open(['route' => ['datosPersonal.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
@@ -682,7 +683,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+    
                                 <div class="carousel-item">
                                     <h3 class="page__heading" style="padding: 1%;">Mantenimiento.</h3>
                                     <div class="section-body">
@@ -694,8 +695,7 @@
                                                             role="alert">
                                                             <strong>¡Revise los campos!</strong>
                                                             @foreach ($errors->all() as $error)
-                                                                <span
-                                                                    class="badge badge-danger">{{ $error }}</span>
+                                                                <span class="badge badge-danger">{{ $error }}</span>
                                                             @endforeach
                                                             <button type="button" class="close" data-dismiss="alert"
                                                                 aria-label="Close">
@@ -703,7 +703,7 @@
                                                             </button>
                                                         </div>
                                                     @endif
-
+    
                                                     {!! Form::open(['route' => ['mantenimiento.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
@@ -777,20 +777,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleInterval" role="button"
-                                data-bs-slide="prev" style="background-color: aquamarine; height: 10px; width: 30px;">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleInterval" role="button"
-                                data-bs-slide="next" style="background-color: aquamarine; height: 10px; width: 30px;">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </a>
                         </div>
+                        <a class="carousel-control-prev" href="#carouselExampleInterval" role="button"
+                            data-bs-slide="prev" style="background-color: aquamarine; height: 10px; width: 30px;">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleInterval" role="button"
+                            data-bs-slide="next" style="background-color: aquamarine; height: 10px; width: 30px;">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </a>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 @stop

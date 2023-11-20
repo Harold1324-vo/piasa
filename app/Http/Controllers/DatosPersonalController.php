@@ -79,17 +79,51 @@ class DatosPersonalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DatosPersonal $datosPersonal)
+    public function edit($id)
     {
-        //
+        // Encuentra el sistema con sus roles
+        $sistema = Sistema::with('datosPersonal')->findOrFail($id);
+
+        // Pasa el sistema a la vista
+        return view('sistema.edit', compact('sistema'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DatosPersonal $datosPersonal)
+    public function update(Request $request, $id)
     {
-        //
+        // Busca el sistema
+        $sistema = Sistema::findOrFail($id);
+
+        // Valida los datos del formulario
+        $request->validate([
+            'manejoDatosPersonales' => 'required',
+            'fundamentoLegal' => 'required',
+            'tipoDatosPersonales' => 'required',
+            'formaObtencion' => 'required',
+            'portabilidadDatos' => 'required',
+            'transferenciaDatos' => 'required',
+            'tipoSoporte' => 'required',
+            'avisoPrivacidad' => 'required',
+        ]);
+
+        // Busca y actualiza el rolSistemas existente
+        $datosPersonal = DatosPersonal::where('idSistema', $sistema->id)->first();
+
+        $datosPersonal->manejoDatosPersonales = $request->input('manejoDatosPersonales');
+        $datosPersonal->fundamentoLegal = $request->input('fundamentoLegal');
+        $datosPersonal->tipoDatosPersonales = $request->input('tipoDatosPersonales');
+        $datosPersonal->formaObtencion = $request->input('formaObtencion');
+        $datosPersonal->portabilidadDatos = $request->input('portabilidadDatos');
+        $datosPersonal->transferenciaDatos = $request->input('transferenciaDatos');
+        $datosPersonal->tipoSoporte = $request->input('tipoSoporte');
+        $datosPersonal->avisoPrivacidad = $request->input('avisoPrivacidad');
+
+        $datosPersonal->save();
+
+        return redirect()->back()->with('Mensaje', 'Datos actualizados correctamente');
+
     }
 
     /**

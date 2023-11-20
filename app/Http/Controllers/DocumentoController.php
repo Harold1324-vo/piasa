@@ -105,17 +105,44 @@ class DocumentoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Documento $documento)
+    public function edit($id)
     {
-        //
+        // Encuentra el sistema con sus roles
+        $sistema = Sistema::with('documento')->findOrFail($id);
+
+        // Pasa el sistema a la vista
+        return view('sistema.edit', compact('sistema'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Documento $documento)
+    public function update(Request $request, $id)
     {
-        //
+        // Busca el sistema
+        $sistema = Sistema::findOrFail($id);
+
+        // Valida los datos del formulario
+        $request->validate([
+            'documentado' => 'required',
+            'manualUsuario' => 'required',
+            'manualTecnico' => 'required',
+            'manualMantenimiento' => 'required',
+            'politicaPrivacidad' => 'required',
+        ]);
+
+        // Busca y actualiza el rolSistemas existente
+        $documento = Documento::where('idSistema', $sistema->id)->first();
+
+        $documento->documentado = $request->input('documentado');
+        $documento->manualUsuario = $request->input('manualUsuario');
+        $documento->manualTecnico = $request->input('manualTecnico');
+        $documento->manualMantenimiento = $request->input('manualMantenimiento');
+        $documento->politicaPrivacidad = $request->input('politicaPrivacidad');
+
+        $documento->save();
+
+        return redirect()->back()->with('Mensaje', 'Datos actualizados correctamente');
     }
 
     /**

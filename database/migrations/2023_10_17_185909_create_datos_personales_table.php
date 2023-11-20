@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->string('manejoDatosPersonales', 20);
             $table->text('fundamentoLegal');
-            $table->string('tipoDatosPersonales', 150);
+            $table->text('tipoDatosPersonales');
             $table->string('formaObtencion', 50);
             $table->string('portabilidadDatos', 20);
             $table->string('transferenciaDatos', 20);

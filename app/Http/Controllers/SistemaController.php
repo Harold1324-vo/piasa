@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sistema;
-
+use App\Models\Archivo;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Informacion;
+use PDF;
 
 class SistemaController extends Controller
 {
@@ -115,8 +117,22 @@ class SistemaController extends Controller
      */
     public function edit(Sistema $sistema)
     {
-        //
-        return view('sistema.edit', compact('sistema'));
+        $nombresArchivos = [
+            'F1 - Acta de constitución del proyecto',
+            'F2 - Acta de aceptación de entregables',
+            'F3 - Acta de cierre de proyecto',
+            'L1 - Cédula de identificación de proyectos',
+            'L2 - Formato de minutas',
+            'L3 - Plan de pruebas',
+            'L4 - Matriz de pruebas',
+            'L5 - Solicitud de cambios',
+            'L6 - Asignación usuario perfil',
+            'L7 - Reporte de avance',
+            'L8 - Análisis de requerimientos',
+            'L9 - Especificación de requerimientos',
+            'L10 - Plantilla elaboración de manuales',
+        ];
+        return view('sistema.edit', compact('sistema', 'nombresArchivos'));
     }
 
     /**
@@ -139,10 +155,55 @@ class SistemaController extends Controller
         return redirect()->route('sistema.index');
     }
 
-    public function guardarRespuesta(Request $request, $id)
+    /**public function guardarRespuesta(Request $request, $id)
     {
         
         return redirect()->back()->with('success2', 'El archivo se ha almacenado correctamente.');
+    }**/
+
+    public function graficaDocumentacionCompleta(Sistema $sistema)
+    {
+        // Obtener la lista de archivos del sistema
+        $archivos = Archivo::where('idSistema', $sistema->id)->first();  // Asumiendo que hay una relación entre Sistema y Archivo
+
+        // Verificar si hay archivos
+        if ($archivos) {
+            // Separar las rutas de archivos en un array
+            $rutasArchivos = explode('|', $archivos->nombreArchivo);
+
+            // Contar el número total de archivos esperados
+            $totalArchivosEsperados = 20;
+
+            // Contar el número de archivos completos
+            $archivosCompletos = count($rutasArchivos);
+
+            // Calcular el porcentaje de cumplimiento
+            $porcentajeCumplimiento = ($archivosCompletos / $totalArchivosEsperados) * 100;
+        } else {
+            // No hay archivos, establecer el porcentaje en cero
+            $porcentajeCumplimiento = 0;
+        }
+
+        return view('sistema.grafica', compact('sistema', 'porcentajeCumplimiento'));
+    }
+
+    public function generarPDF($idSistema)
+    {
+        // Recuperar datos del sistema y sus relaciones
+        $sistema = Sistema::findOrFail($idSistema);
+        $informacion = Informacion::where('idSistema', $idSistema)->first();
+        // Agrega más consultas según sea necesario para otras tablas relacionadas
+
+        // Devolver la vista Blade con los datos recuperados
+        $data = [
+            'sistema' => $sistema,
+            'informacion' => $informacion,
+            // Agrega más datos según sea necesario
+        ];
+
+        $pdf = PDF::loadView('reporte', $data);
+
+        return $pdf->download('reporteTest.pdf');
     }
 
     /**
@@ -152,5 +213,9 @@ class SistemaController extends Controller
     {
         $sistema->delete();
         return redirect()->route('sistema.index');
+    }
+
+    public function generarReporte(){
+        return view('reporte');
     }
 }

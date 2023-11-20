@@ -7,6 +7,13 @@
 @stop
 
 @section('content')
+
+    <div class="card">
+        <div class="container">
+            <h1>Gráfico Estatus de los sistema</h1>
+            <canvas id="graficaEtapasPorAno" style="max-width: 260px; max-height: 260px;"></canvas>
+        </div>
+    </div>
     <div class="section-body">
         <div class="row">
             <div class="col-lg-12">
@@ -64,8 +71,62 @@
             </div>
         </div>
     </div>
+
+    <!-- En tu vista blade (puedes crear un nuevo archivo js si prefieres) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Obtén los datos desde PHP
+        var datosPorAno = <?php echo json_encode($data); ?>;
+
+        // Configuración de la gráfica
+        var ctx = document.getElementById('graficaEtapasPorAno').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: datosPorAno.map(data => data.ano),
+                datasets: [{
+                        label: 'Inicio',
+                        data: datosPorAno.map(data => data.etapas.Inicio.percentage),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Planeación',
+                        data: datosPorAno.map(data => data.etapas.Planeación.percentage),
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Ejecución',
+                        data: datosPorAno.map(data => data.etapas.Ejecución.percentage),
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Cierre',
+                        data: datosPorAno.map(data => data.etapas.Cierre.percentage),
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+    </script>
 @stop
 
 @section('css')
-	@vite(['resources/css/style_home.scss'])
+    @vite(['resources/css/style_home.scss'])
 @stop

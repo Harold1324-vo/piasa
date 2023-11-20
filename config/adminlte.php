@@ -305,13 +305,26 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'Buscar',
         ],
+        ['header' => 'CONFIGURACIÓN DEL PERFIL'],
         [
-            'text'        => 'Gráficas',
-            'url'         => 'home',
-            'icon'        => 'fas fa-fw fa-chart-pie',
+            'text'        => 'Datos del Usuario',
+            'url'         => 'verDatosUsuario',
+            'icon'        => 'fas fa-fw fa-user',
             'label_color' => 'success',
         ],
-        ['header' => 'Apartados'],
+        [
+            'text'        => 'Modificar Contraseña',
+            'url'         => 'updatePassword',
+            'icon'        => 'fas fa-fw fa-lock',
+            'label_color' => 'success',
+        ],
+        ['header' => 'MENÚ'],
+        [
+            'text'        => 'Inicio',
+            'url'         => 'home',
+            'icon'        => 'fas fa-fw fa-home',
+            'label_color' => 'success',
+        ],
         [
             'text' => 'Usuarios',
             'url'  => 'usuario',
@@ -367,9 +380,9 @@ return [
             ],
         ], */
         [
-            'text'       => 'Reportes',
-            'icon' => 'fa fa-book',
-            'url'        => '#',
+            'text'       => 'Lista de Verificación',
+            'icon'       => 'fa fa-clipboard-check',
+            'url'        => 'listaVerificacion',
         ]
     ],
 

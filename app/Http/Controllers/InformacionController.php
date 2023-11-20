@@ -101,17 +101,65 @@ class InformacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Informacion $informacion)
+    public function edit($id)
     {
-        //
+        // Encuentra el sistema con sus roles
+        $sistema = Sistema::with('informacion')->findOrFail($id);
+
+        // Pasa el sistema a la vista
+        return view('sistema.edit', compact('sistema'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Informacion $informacion)
+    public function update(Request $request, $id)
     {
-        //
+        // Busca el sistema
+        $sistema = Sistema::findOrFail($id);
+
+        // Valida los datos del formulario
+        $request->validate([
+            'anoComienzoOperaciones' => 'required',
+            'consultaInformacion' => 'required',
+            'requiereActualizacion' => 'required',
+            'fechaUltimaActualizacion' => 'required',
+            'datosAbiertos' => 'required',
+            'tipoPublicacion' => 'required',
+            'nivelInteraccion' => 'required',
+            'etapaActual' => 'required',
+            'subEtapaActual' => 'required',
+            'faseActual' => 'required',
+            'legado' => 'required',
+            'modeloOperacion' => 'required',
+            'interaccionDependencias' => 'required',
+            'interaccionOtrasAreas' => 'required',
+            'migrado' => 'required',
+        ]);
+
+        // Busca y actualiza el rolSistemas existente
+        $informacion = Informacion::where('idSistema', $sistema->id)->first();
+
+        $informacion->anoComienzoOperaciones = $request->input('anoComienzoOperaciones');
+        $informacion->consultaInformacion = $request->input('consultaInformacion');
+        $informacion->requiereActualizacion = $request->input('requiereActualizacion');
+        $informacion->fechaUltimaActualizacion = $request->input('fechaUltimaActualizacion');
+        $informacion->datosAbiertos = $request->input('datosAbiertos');
+        $informacion->tipoPublicacion = $request->input('tipoPublicacion');
+        $informacion->nivelInteraccion = $request->input('nivelInteraccion');
+        $informacion->etapaActual = $request->input('etapaActual');
+        $informacion->subEtapaActual = $request->input('subEtapaActual');
+        $informacion->faseActual = $request->input('faseActual');
+        $informacion->legado = $request->input('legado');
+        $informacion->modeloOperacion = $request->input('modeloOperacion');
+        $informacion->interaccionDependencias = $request->input('interaccionDependencias');
+        $informacion->interaccionOtrasAreas = $request->input('interaccionOtrasAreas');
+        $informacion->migrado = $request->input('migrado');
+
+        $informacion->save();
+
+        return redirect()->back()->with('Mensaje', 'Datos actualizados correctamente');
+
     }
 
     /**
