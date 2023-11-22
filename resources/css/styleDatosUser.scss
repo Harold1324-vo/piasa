@@ -1,0 +1,36 @@
+.contenedor {
+    padding: 2%;
+}
+
+.foto {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.h51{
+    margin-top: 20px;
+}
+
+.avatar {
+    object-fit: contain;
+    max-width: 70%;
+    max-height: 100%;
+    margin: 0 auto;
+}
+
+.avatar2 {
+    object-fit: contain;
+    max-width: 80%;
+    max-height: 100%;
+    margin: 0 auto;
+    padding-top: 20%;
+}
+
+.info h2{
+    text-align: center;
+}
+
+.form-label{
+    margin-top: 10px;
+}

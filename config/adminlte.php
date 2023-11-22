@@ -106,7 +106,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'img' => [
             'path' => 'vendor/adminlte/dist/img/logo.png',
             'alt' => 'PIASA Preloader Image',

@@ -129,7 +129,8 @@ class UserController extends Controller
         return view('usuario.bloqueado');
     }
 
-    public function verDatosUsuario(){
+    public function verDatosUsuario()
+    {
         // Obtén el usuario autenticado
         $usuarioAutenticado = Auth::user();
 
@@ -146,7 +147,7 @@ class UserController extends Controller
 
             // También puedes cargar estos datos en una vista
             return view('usuario.verDatosUsuario', [
-                'nombre' => $nombre, 
+                'nombre' => $nombre,
                 'apellidoPaterno' => $apellidoPaterno,
                 'apellidoMaterno' => $apellidoMaterno,
                 'puesto' => $puesto,
@@ -162,24 +163,32 @@ class UserController extends Controller
 
     public function updatePassword(Request $request)
     {
-        $request->validate([
-        ],
-        [
-            'contrasenia_actual.required' => 'El campo Contraseña Actual es obligatorio.',
-            'contrasenia_actual.regex' => 'La Contraseña Actual no coincide.',
+        $request->validate(
+            [
+                'contrasenia_actual' => 'required',
+                'contrasenia_nueva' => 'required|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/|confirmed',
+            ],
+            [
+                'contrasenia_actual.required' => 'El campo Contraseña Actual es obligatorio.',
+                'contrasenia_nueva.required' => 'El campo Contraseña Nueva es obligatorio.',
+                'contrasenia_nueva.regex' => 'La Contraseña Nueva debe tener entre 8 y 15 caracteres, al menos un número, al menos una minúscula, al menos una mayúscula y al menos un caracter especial.',
+                'contrasenia_nueva.confirmed' => 'Las contraseñas nuevas deben coincidir.',
+            ]
+        );
 
-          
-        ]);
- 
         $user = Auth::user();
 
+        // Verificar la contraseña actual
         if (!Hash::check($request->contrasenia_actual, $user->password)) {
             return redirect()->back()->withErrors(['contrasenia_actual' => 'La contraseña actual no coincide.']);
         }
 
+        // Actualizar la contraseña
         $user->password = Hash::make($request->contrasenia_nueva);
         $user->save();
 
         return redirect()->back()->with('success_cambio_contrasenia', '¡Contraseña cambiada exitosamente!');
+
+        
     }
 }
