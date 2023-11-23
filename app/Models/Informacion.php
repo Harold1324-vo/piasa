@@ -35,4 +35,5 @@ class Informacion extends Model
         return $this->belongsTo(Sistema::class, 'idSistema');
     }
     
+    
 }

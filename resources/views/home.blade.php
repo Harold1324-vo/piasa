@@ -2,16 +2,12 @@
 
 @section('title', 'PIASA')
 
-@section('content_header')
-    <h1>Bienvenidos a PIASA</h1>
-@stop
-
 @section('content')
-
+    <br>
     <div class="card">
         <div class="container">
-            <h1>Gráfico Estatus de los sistema</h1>
-            <canvas id="graficaEtapasPorAno" style="max-width: 260px; max-height: 260px;"></canvas>
+            <h2 class="text-center" style="padding-top: 1%">Estatus de los Sistema</h2>
+            <canvas id="graficaEtapasPorAno" style="max-width: 100$; max-height: 82%;"></canvas>
         </div>
     </div>
     <div class="section-body">
@@ -88,29 +84,29 @@
                 datasets: [{
                         label: 'Inicio',
                         data: datosPorAno.map(data => data.etapas.Inicio.percentage),
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(255, 42, 0, 0.2)',
+                        borderColor: 'rgba(255, 42, 0)',
                         borderWidth: 1
                     },
                     {
                         label: 'Planeación',
                         data: datosPorAno.map(data => data.etapas.Planeación.percentage),
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 224, 0, 0.2)',
+                        borderColor: 'rgba(255, 224, 0, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Ejecución',
                         data: datosPorAno.map(data => data.etapas.Ejecución.percentage),
-                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                        borderColor: 'rgba(255, 206, 86, 1)',
+                        backgroundColor: 'rgba(70, 255, 0, 0.2)',
+                        borderColor: 'rgba(70, 255, 0, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Cierre',
                         data: datosPorAno.map(data => data.etapas.Cierre.percentage),
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(10, 252, 226, 0.2)',
+                        borderColor: 'rgba(10, 252, 226, 1)',
                         borderWidth: 1
                     }
                 ]

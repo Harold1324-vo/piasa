@@ -14,7 +14,7 @@
                     <h5 class="text-center"><b>{{ $name }}</b></h5>
                 </div>
                 <div class="info col-md-8">
-                    <h2>Datos Generales del Perfil.</h2>
+                    <h2>Datos Generales del Perfil</h2>
                     <div class="card-body">
                         <form class="row g-3">
                             <div class="col-md-4">

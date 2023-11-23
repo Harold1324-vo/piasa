@@ -26,11 +26,29 @@ class SistemaController extends Controller
      */
     public function index()
     {
-        //
-        $sistema = Sistema::all();
-        $sistema = Sistema::paginate(5);
-        return view('sistema.index', ['sistema'=>$sistema ]);
+        $anios = Informacion::select('anoComienzoOperaciones')->distinct()->pluck('anoComienzoOperaciones');
+        return view('sistema.index', compact('anios'));
     }
+    
+
+// app/Http/Controllers/InformacionController.php
+public function mostrarSistemasPorAno($ano)
+{
+    if (Auth::user()->hasRole('Administrador')) {
+        $informacionPorAno = Informacion::where('anoComienzoOperaciones', $ano)->with('sistema')->paginate(10);
+    } else {
+        $usuarioId = Auth::user()->id;
+        $informacionPorAno = Informacion::where('anoComienzoOperaciones', $ano)
+            ->whereHas('sistema', function ($query) use ($usuarioId) {
+                $query->where('idUsuario', $usuarioId);
+            })
+            ->paginate(10);
+    }
+
+    return view('sistema.showsistema', compact('informacionPorAno', 'ano'));
+}
+
+
 
     /**
      * Show the form for creating a new resource.

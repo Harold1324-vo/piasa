@@ -52,6 +52,8 @@ Route::get('verDatosUsuario', [UserController::class, 'verDatosUsuario'])->name(
 
 Route::get('/updatePassword', [UserController::class, 'show'])->name('updatePassword.show');
 Route::post('/updatePassword', [UserController::class, 'updatePassword'])->name('updatePassword.post');
+// routes/web.php
+Route::get('/informacion/{ano}/mostrar-sistemas', [SistemaController::class, 'mostrarSistemasPorAno'])->name('sistema.mostrar-sistemas-por-ano');
 
 
 //Rutas para crear registrar los datos del sistema
