@@ -106,7 +106,8 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
+        'time' => 100,
         'img' => [
             'path' => 'vendor/adminlte/dist/img/logo.png',
             'alt' => 'PIASA Preloader Image',
@@ -379,11 +380,11 @@ return [
                 ],
             ],
         ], */
-        [
+        /* [
             'text'       => 'Lista de Verificación',
             'icon'       => 'fa fa-clipboard-check',
             'url'        => 'listaVerificacion',
-        ]
+        ] */
     ],
 
     /*

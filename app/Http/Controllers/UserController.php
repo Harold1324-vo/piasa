@@ -9,13 +9,12 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Expr\FuncCall;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $usuarios = User::paginate(5);
+        $usuarios = User::paginate();
         return view('usuario.index', compact('usuarios'));
     }
 
@@ -37,27 +36,37 @@ class UserController extends Controller
         /*email -> que sea de tipo email y que sea única
             password -> que se confirme el password*/
         $this->validate($request, [
-            'name' => 'required',
-            'nombre' => 'required',
-            'apellidoPaterno' => 'required',
-            'apellidoMaterno' => 'required',
-            'puesto' => 'required',
-            'areaAdscripcion' => 'required',
-            'estado' => 'required',
-            'numeroIntentos' => 'required',
+            'nombre' => 'required|string|min:3|max:255',
+            'apellidoPaterno' => 'required|string|min:3|max:255',
+            'apellidoMaterno' => 'required|string|min:3|max:255',
+            'name' => 'required|string|min:5|max:255',
+            'puesto' => 'required|string|min:5|max:255',
+            'areaAdscripcion' => 'required|string|min:3|max:255',
+            'estado' => 'required|string|max:255',
+            'numeroIntentos' => 'required|integer',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+            'password' => 'required|min:6|same:confirm-password',
+            'roles' => 'required',
         ]);
 
-
+        //Creación del Usuario
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('usuario.index');
+
+        return redirect()->back()->with('success_usuario_creado', '¡Usuario registrado exitosamente!')->with('script', "
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: '¡Usuario registrado exitosamente!',
+                    showConfirmButton: false,
+                    timer: 3500
+                });
+            </script>
+        ");
     }
 
     /**
@@ -74,11 +83,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $roles = Role::pluck('name', 'name')->all();
-        $userRole = $user->roles->pluck('name', 'name')->all();
+        $userRoles = $user->roles->pluck('name')->toArray(); // Obtén los roles del usuario como un array
+        $userEstado = $user->estado;
+        $userNumeroIntentos = $user->numeroIntentos;
 
-        return view('usuario.edit', compact('user', 'roles', 'userRole'));
+        return view('usuario.edit', compact('user', 'roles', 'userRoles', 'userEstado', 'userNumeroIntentos'));
     }
 
     /**
@@ -87,17 +98,16 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'nombre' => 'required',
-            'apellidoPaterno' => 'required',
-            'apellidoMaterno' => 'required',
-            'puesto' => 'required',
-            'areaAdscripcion' => 'required',
-            'estado' => 'required',
-            'numeroIntentos' => 'required',
+            'nombre' => 'required|string|min:3|max:255',
+            'apellidoPaterno' => 'required|string|min:3|max:255',
+            'apellidoMaterno' => 'required|string|min:3|max:255',
+            'name' => 'required|string|min:5|max:255',
+            'puesto' => 'required|string|min:5|max:255',
+            'areaAdscripcion' => 'required|string|min:3|max:255',
+            'estado' => 'required|string|max:255',
+            'numeroIntentos' => 'required|integer',
             'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
         ]);
 
         $input = $request->all();
@@ -112,7 +122,17 @@ class UserController extends Controller
         DB::table('model_has_roles')->where('model_id', $id)->delete();
 
         $user->assignRole($request->input('roles'));
-        return redirect()->route('usuario.index');
+        return redirect()->back()->with('success_usuario_editado', '¡Usuario editado exitosamente!')->with('script', "
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: '¡Usuario editado exitosamente!',
+                    showConfirmButton: false,
+                    timer: 3500
+                });
+            </script>
+        ");
     }
 
     /**
@@ -188,7 +208,5 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->back()->with('success_cambio_contrasenia', '¡Contraseña cambiada exitosamente!');
-
-        
     }
 }
