@@ -15,45 +15,51 @@
                             data-bs-interval="false">
                             <div class="carousel-inner">
                                 <div class="carousel-item active" data-bs-interval="1000">
-                                    <h3 class="page__heading" style="padding: 1%;">Roles del Sistema.</h3>
+                                    <h2 class="page__heading text-center" style="padding: 1%;">Roles del Sistema.</h2>
                                     <div class="section-body">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="card-body">
-                                                    @if ($errors->any())
-                                                        <div class="alert alert-dark alert-dismissible fade show"
-                                                            role="alert">
-                                                            <strong>¡Revise los campos!</strong>
-                                                            @foreach ($errors->all() as $error)
-                                                                <span class="badge badge-danger">{{ $error }}</span>
-                                                            @endforeach
-                                                            <button type="button" class="close" data-dismiss="alert"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                    @endif
-
                                                     {!! Form::open(['route' => ['rolsistemas.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Líder del proyecto: </label>
-                                                                {!! Form::text('nombreLiderProyecto', old('nombreLiderProyecto'), ['class' => 'form-control']) !!}
+                                                                <label for="">Líder del proyecto*:</label>
+                                                                {!! Form::text('nombreLiderProyecto', old('nombreLiderProyecto'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese el nombre del líder',
+                                                                ]) !!}
+                                                                @error('nombreLiderProyecto')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Puesto del Líder del proyecto:
-                                                                </label>
-                                                                {!! Form::text('puestoLiderProyecto', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Puesto del Líder del
+                                                                    proyecto*:</label>
+                                                                {!! Form::text('puestoLiderProyecto', old('puestoLiderProyecto'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese el puesto del líder',
+                                                                ]) !!}
+                                                                @error('puestoLiderProyecto')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Administrador del proyecto:
-                                                                </label>
-                                                                {!! Form::text('nombreAdministradorProyecto', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Administrador del proyecto*:</label>
+                                                                {!! Form::text('nombreAdministradorProyecto', old('nombreAdministradorProyecto'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese el nombre del administrador',
+                                                                ]) !!}
+                                                                @error('nombreAdministradorProyecto')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -61,167 +67,336 @@
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Puesto del administrador del
-                                                                    proyecto: </label>
-                                                                {!! Form::text('puestoAdministradorProyecto', null, ['class' => 'form-control']) !!}
+                                                                    proyecto*:</label>
+                                                                {!! Form::text('puestoAdministradorProyecto', old('puestoAdministradorProyecto'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese el puesto del administrador',
+                                                                ]) !!}
+                                                                @error('puestoAdministradorProyecto')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Desarrollador/Programador:
-                                                                </label>
-                                                                {!! Form::text('nombreDesarrollador', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Desarrollador/Programador*:</label>
+                                                                {!! Form::text('nombreDesarrollador', old('nombreDesarrollador'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese el nombre del desarrollador',
+                                                                ]) !!}
+                                                                @error('nombreDesarrollador')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Puesto del
-                                                                    Desarrollador/Programador </label>
-                                                                {!! Form::text('puestoDesarrollador', null, ['class' => 'form-control']) !!}
+                                                                    Desarrollador/Programador*:</label>
+                                                                {!! Form::text('puestoDesarrollador', old('puestoDesarrollador'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese el puesto del desarrollador',
+                                                                ]) !!}
+                                                                @error('puestoDesarrollador')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Área usuaria </label>
-                                                                {!! Form::text('areaUsuaria', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Área usuaria*:</label>
+                                                                {!! Form::text('areaUsuaria', old('areaUsuaria'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese el nombre del área',
+                                                                ]) !!}
+                                                                @error('areaUsuaria')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Puesto del usuario: </label>
-                                                                {!! Form::text('puestoUsuario', null, ['class' => 'form-control']) !!}
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                            <div class="form-group">
-                                                                <label for="">ID de la plataforma: </label>
-                                                                <header> {{ $sistema->id }}</header>
+                                                                <label for="">Puesto del usuario*:</label>
+                                                                {!! Form::text('puestoUsuario', old('puestoUsuario'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese el puesto del usuario',
+                                                                ]) !!}
+                                                                @error('puestoUsuario')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                        <input class="btn btn-info" style="margin: 1%" type="reset"
-                                                            value="Restablecer">
-                                                        <input class="btn btn-primary" style="margin: 1%" type="submit"
-                                                            value="Guardar">
+                                                        <div style="flex-grow: 1;">
+                                                            <p>* Campos Obligatorios</p>
+                                                        </div>
+                                                        <div class="d-flex flex-column flex-md-row justify-content-md-end">
+                                                            <input class="btn btn-info ms-md-2" type="reset"
+                                                                value="Restablecer" style="margin: 3%">
+                                                            <input class="btn btn-success ms-md-2" type="submit"
+                                                                value="Guardar" style="margin: 3%">
+                                                        </div>
                                                     </div>
                                                     {!! Form::close() !!}
-                                                </div>
 
+                                                    <!-- Script de SweetAlert -->
+                                                    @if (session('script'))
+                                                        {!! session('script') !!}
+                                                    @endif
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="carousel-item" data-bs-interval="2000">
-                                    <h3 class="page__heading" style="padding: 1%;">Información General.</h3>
+                                    <h2 class="page__heading text-center" style="padding: 1%;">Información General.</h2>
                                     <div class="section-body">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="card-body">
-                                                    @if ($errors->any())
-                                                        <div class="alert alert-dark alert-dismissible fade show"
-                                                            role="alert">
-                                                            <strong>¡Revise los campos!</strong>
-                                                            @foreach ($errors->all() as $error)
-                                                                <span class="badge badge-danger">{{ $error }}</span>
-                                                            @endforeach
-                                                            <button type="button" class="close" data-dismiss="alert"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                    @endif
-
-                                                    {!! Form::open(['route' => ['informacion.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
+                                                    {!! Form::open(['route' => ['informacion.store', 'id' => $sistema->id], 'method' => 'POST', 'id' => 'informacionForm']) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Año que el sistema comenzó
-                                                                    operaciones: </label>
-                                                                {!! Form::text('anoComienzoOperaciones', null, ['class' => 'form-control']) !!}
+                                                                    operaciones*:</label>
+                                                                {!! Form::select(
+                                                                    'anoComienzoOperaciones',
+                                                                    array_combine(range(date('Y'), 1999), range(date('Y'), 1999)),
+                                                                    old('anoComienzoOperaciones'),
+                                                                    [
+                                                                        'class' => 'form-control',
+                                                                        'required' => 'required',
+                                                                        'placeholder' => 'Ingrese el año',
+                                                                    ],
+                                                                ) !!}
+                                                                @error('anoComienzoOperaciones')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">¿El sistema solo es para
-                                                                    consultar
-                                                                    información?</label>
-                                                                {!! Form::text('consultaInformacion', null, ['class' => 'form-control']) !!}
+                                                                <label for="">¿Solo es para consultar
+                                                                    información?*:</label>
+                                                                {!! Form::select(
+                                                                    'consultaInformacion',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('consultaInformacion'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('consultaInformacion')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">¿El sistema requiere
-                                                                    actualización? </label>
-                                                                {!! Form::text('requiereActualizacion', null, ['class' => 'form-control']) !!}
+                                                                    actualización?*:</label>
+                                                                {!! Form::select(
+                                                                    'requiereActualizacion',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'No Aplica' => 'No Aplica',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('consultaInformacion'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('requiereActualizacion')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Fecha de última actualización
-                                                                    del sistema:
-                                                                </label>
-                                                                {!! Form::date('fechaUltimaActualizacion', null, ['class' => 'form-control', 'id' => 'datatimepicker']) !!}
+                                                                <label for="">Fecha de última actualización del
+                                                                    sistema*:</label>
+                                                                {!! Form::date('fechaUltimaActualizacion', old('fechaUltimaActualizacion'), [
+                                                                    'class' => 'form-control',
+                                                                    'id' => 'datatimepicker',
+                                                                    'required' => 'required',
+                                                                ]) !!}
+                                                                @error('fechaUltimaActualizacion')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Datos abiertos:</label>
-                                                                {!! Form::text('datosAbiertos', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Datos abiertos*:</label>
+                                                                {!! Form::select(
+                                                                    'datosAbiertos',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('datosAbiertos'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('datosAbiertos')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Tipo de publicación:</label>
-                                                                {!! Form::text('tipoPublicacion', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Tipo de publicación*:</label>
+                                                                {!! Form::select(
+                                                                    'tipoPublicacion',
+                                                                    [
+                                                                        'Interna' => 'Interna',
+                                                                        'Externa' => 'Externa',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('tipoPublicacion'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione un tipo'],
+                                                                ) !!}
+                                                                @error('tipoPublicacion')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Nivel de interacción:</label>
-                                                                {!! Form::text('nivelInteraccion', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Nivel de interacción*:</label>
+                                                                {!! Form::select(
+                                                                    'nivelInteraccion',
+                                                                    [
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                        'Interacción Manual' => 'Interacción Manual',
+                                                                        'Interoperabilidad Semántica' => 'Interoperabilidad Semántica',
+                                                                        'Interoperabilidad Técnica' => 'Interoperabilidad Técnica',
+                                                                        'Interoperabilidad Técnica y Organizacional' => 'Interoperabilidad Técnica y Organizacional',
+                                                                        'Interoperabilidad Semántica y Organizacional' => 'Interoperabilidad Semántica y Organizacional',
+                                                                    ],
+                                                                    old('nivelInteraccion'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione un nivel'],
+                                                                ) !!}
+                                                                @error('nivelInteraccion')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Fase Actual: </label>
-                                                                {!! Form::text('faseActual', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Fase Actual*: </label>
+                                                                {!! Form::select(
+                                                                    'faseActual',
+                                                                    [
+                                                                        'Desarrollo' => 'Desarrollo',
+                                                                        'Completado' => 'Completado',
+                                                                        'Concluido' => 'Concluido',
+                                                                        'Cancelado' => 'Cancelado',
+                                                                        'Congelado' => 'Congelado',
+                                                                    ],
+                                                                    old('faseActual'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una fase'],
+                                                                ) !!}
+                                                                @error('faseActual')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Etapa en el que se encuentra
-                                                                    el sistema:</label>
-                                                                {!! Form::text('etapaActual', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Etapa en el que se encuentra el
+                                                                    sistema*:</label>
+                                                                {!! Form::select(
+                                                                    'etapaActual',
+                                                                    [
+                                                                        'Planeación' => 'Planeación',
+                                                                        'Inicio' => 'Inicio',
+                                                                        'Ejecución' => 'Ejecución',
+                                                                        'Cierre' => 'Cierre',
+                                                                    ],
+                                                                    old('etapaActual'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una etapa'],
+                                                                ) !!}
+                                                                @error('etapaActual')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Sub-etapa en el que se
-                                                                    encuentra el
-                                                                    sistema:</label>
-                                                                {!! Form::text('subEtapaActual', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Sub-etapa en el que se encuentra el
+                                                                    sistema*:</label>
+                                                                {!! Form::select(
+                                                                    'subEtapaActual',
+                                                                    [
+                                                                        'Reunión de Arranque' => 'Reunión de Arranque',
+                                                                        'Análisis, Diseño y Modelado' => 'Análisis, Diseño y Modelado',
+                                                                        'Construcción' => 'Construcción',
+                                                                        'Puesta en Operación' => 'Puesta en Operación',
+                                                                        'No Aplica' => 'No Aplica',
+                                                                    ],
+                                                                    old('subEtapaActual'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una sub-etapa'],
+                                                                ) !!}
+                                                                @error('subEtapaActual')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">¿El Sistema es legado?
-                                                                </label>
-                                                                {!! Form::text('legado', null, ['class' => 'form-control']) !!}
+                                                                <label for="">¿El Sistema es legado?*:</label>
+                                                                {!! Form::select(
+                                                                    'legado',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('legado'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('legado')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Modelo de operación:</label>
-                                                                {!! Form::text('modeloOperacion', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Modelo de operación*:</label>
+                                                                {!! Form::select(
+                                                                    'modeloOperacion',
+                                                                    [
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                        'En la nube' => 'En la nube',
+                                                                        'Interno' => 'Interno',
+                                                                        'Mixto' => 'Mixto',
+                                                                    ],
+                                                                    old('modeloOperacion'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione un modelo'],
+                                                                ) !!}
+                                                                @error('modeloOperacion')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -229,38 +404,69 @@
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Interacción con
-                                                                    dependencias:</label>
-                                                                {!! Form::text('interaccionDependencias', null, ['class' => 'form-control']) !!}
+                                                                    dependencias*:</label>
+                                                                {!! Form::text('interaccionDependencias', old('interaccionDependencias'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese la interacción',
+                                                                ]) !!}
+                                                                @error('interaccionDependencias')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Interacción con otras
-                                                                    áreas</label>
-                                                                {!! Form::text('interaccionOtrasAreas', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Interacción con otras áreas*:</label>
+                                                                {!! Form::text('interaccionOtrasAreas', old('interaccionOtrasAreas'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese la interacción',
+                                                                ]) !!}
+                                                                @error('interaccionOtrasAreas')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">¿El sistema se encuentra
-                                                                    migrado?</label>
-                                                                {!! Form::text('migrado', null, ['class' => 'form-control']) !!}
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                            <div class="form-group">
-                                                                <label for="">ID de la plataforma: </label>
-                                                                <header> {{ $sistema->id }}</header>
+                                                                    migrado?*:</label>
+                                                                {!! Form::select(
+                                                                    'migrado',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'No Aplica' => 'No Aplica',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('migrado'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('migrado')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                        <input class="btn btn-info" style="margin: 1%" type="reset"
-                                                            value="Restablecer">
-                                                        <input class="btn btn-primary" style="margin: 1%" type="submit"
-                                                            value="Guardar">
+                                                        <div style="flex-grow: 1;">
+                                                            <p>* Campos Obligatorios</p>
+                                                        </div>
+                                                        <div class="d-flex flex-column flex-md-row justify-content-md-end">
+                                                            <input class="btn btn-info ms-md-2" type="reset"
+                                                                value="Restablecer" style="margin: 3%">
+                                                            <input class="btn btn-success ms-md-2" type="submit"
+                                                                value="Guardar" style="margin: 3%">
+                                                        </div>
                                                     </div>
                                                     {!! Form::close() !!}
+
+                                                    <!-- Script de SweetAlert -->
+                                                    @if (session('script'))
+                                                        {!! session('script') !!}
+                                                    @endif
+
                                                 </div>
                                             </div>
                                         </div>
@@ -268,7 +474,8 @@
                                 </div>
 
                                 <div class="carousel-item">
-                                    <h3 class="page__heading" style="padding: 1%;">Características Técnicas.</h3>
+                                    <h2 class="page__heading text-center" style="padding: 1%;">Características Técnicas.
+                                    </h2>
                                     <div class="section-body">
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -278,7 +485,8 @@
                                                             role="alert">
                                                             <strong>¡Revise los campos!</strong>
                                                             @foreach ($errors->all() as $error)
-                                                                <span class="badge badge-danger">{{ $error }}</span>
+                                                                <span
+                                                                    class="badge badge-danger">{{ $error }}</span>
                                                             @endforeach
                                                             <button type="button" class="close" data-dismiss="alert"
                                                                 aria-label="Close">
@@ -291,21 +499,20 @@
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Sistema Operativo: </label>
-                                                                {!! Form::text('sistemaOperativo', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Sistema Operativo*:</label>
+                                                                {!! Form::text('sistemaOperativo', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Control de Versiones:
-                                                                </label>
-                                                                {!! Form::text('controlVersiones', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Control de Versiones*:</label>
+                                                                {!! Form::text('controlVersiones', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Versión del sistema </label>
-                                                                {!! Form::text('versionSistema', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Versión del sistema*:</label>
+                                                                {!! Form::text('versionSistema', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -313,81 +520,77 @@
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Lenguaje de programación del
-                                                                    sistema: </label>
-                                                                {!! Form::text('lenguajeProgramacion', null, ['class' => 'form-control']) !!}
+                                                                    sistema*:</label>
+                                                                {!! Form::text('lenguajeProgramacion', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Interacción con otro lenguaje
-                                                                    de
-                                                                    programación:</label>
-                                                                {!! Form::text('otroLenguajeProgramacion', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Interacción con otro lenguaje de
+                                                                    programación*:</label>
+                                                                {!! Form::text('otroLenguajeProgramacion', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Frameworks:</label>
-                                                                {!! Form::text('frameworks', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Frameworks*:</label>
+                                                                {!! Form::text('frameworks', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Despliegue:</label>
-                                                                {!! Form::text('despliegue', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Despliegue*:</label>
+                                                                {!! Form::text('despliegue', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Si es otro servidor web,
-                                                                    especificarlo:</label>
-                                                                {!! Form::text('otroServidorWeb', null, ['class' => 'form-control']) !!}
+                                                                    especificarlo*:</label>
+                                                                {!! Form::text('otroServidorWeb', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Manejador de base de
-                                                                    datos:</label>
-                                                                {!! Form::text('manejadorBD', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Manejador de base de datos*:</label>
+                                                                {!! Form::text('manejadorBD', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Nombre de la base de
-                                                                    datos:</label>
-                                                                {!! Form::text('nombreBD', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Nombre de la base de datos*:</label>
+                                                                {!! Form::text('nombreBD', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Plataforma de desarrollo de
-                                                                    software:</label>
-                                                                {!! Form::text('plataformaDesarrollo', null, ['class' => 'form-control']) !!}
+                                                                    software*:</label>
+                                                                {!! Form::text('plataformaDesarrollo', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">¿El sistema hace uso de una
-                                                                    API?</label>
-                                                                {!! Form::text('usoAPI', null, ['class' => 'form-control']) !!}
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                            <div class="form-group">
-                                                                <label for="">ID de la plataforma: </label>
-                                                                <header> {{ $sistema->id }}</header>
+                                                                    API?*:</label>
+                                                                {!! Form::text('usoAPI', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                        <input class="btn btn-info" style="margin: 1%" type="reset"
-                                                            value="Restablecer">
-                                                        <input class="btn btn-primary" style="margin: 1%" type="submit"
-                                                            value="Guardar">
+                                                        <div style="flex-grow: 1;">
+                                                            <p>* Campos Obligatorios</p>
+                                                        </div>
+                                                        <div class="d-flex flex-column flex-md-row justify-content-md-end">
+                                                            <input class="btn btn-info ms-md-2" type="reset"
+                                                                value="Restablecer" style="margin: 3%">
+                                                            <input class="btn btn-success ms-md-2" type="submit"
+                                                                value="Guardar" style="margin: 3%">
+                                                        </div>
                                                     </div>
                                                     {!! Form::close() !!}
                                                 </div>
@@ -397,7 +600,7 @@
                                 </div>
 
                                 <div class="carousel-item">
-                                    <h3 class="page__heading" style="padding: 1%;">Documentación.</h3>
+                                    <h2 class="page__heading text-center" style="padding: 1%;">Documentación.</h2>
                                     <div class="section-body">
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -407,7 +610,8 @@
                                                             role="alert">
                                                             <strong>¡Revise los campos!</strong>
                                                             @foreach ($errors->all() as $error)
-                                                                <span class="badge badge-danger">{{ $error }}</span>
+                                                                <span
+                                                                    class="badge badge-danger">{{ $error }}</span>
                                                             @endforeach
                                                             <button type="button" class="close" data-dismiss="alert"
                                                                 aria-label="Close">
@@ -424,45 +628,42 @@
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
                                                             <div class="form-group">
-                                                                <label for="">¿El sistema se encuentra
-                                                                    documentado con base en
-                                                                    la normatividad de la Adminstración Pública
-                                                                    General?</label>
-                                                                {!! Form::text('documentado', null, ['class' => 'form-control']) !!}
+                                                                <label for="">¿El sistema se encuentra documentado
+                                                                    con base en la normatividad de la Adminstración Pública
+                                                                    General?*:</label>
+                                                                {!! Form::text('documentado', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">¿El sistema tiene un manual
-                                                                    de usuario?</label>
-                                                                {!! Form::text('manualUsuario', null, ['class' => 'form-control']) !!}
+                                                                <label for="">¿El sistema tiene un manual de
+                                                                    usuario?*:</label>
+                                                                {!! Form::text('manualUsuario', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">¿El sistema tiene un manual
-                                                                    técnico?</label>
-                                                                {!! Form::text('manualTecnico', null, ['class' => 'form-control']) !!}
+                                                                    técnico?*:</label>
+                                                                {!! Form::text('manualTecnico', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">¿El sistema tiene un manual
-                                                                    de
-                                                                    mantenimiento?</label>
-                                                                {!! Form::text('manualMantenimiento', null, ['class' => 'form-control']) !!}
+                                                                <label for="">¿El sistema tiene un manual de
+                                                                    mantenimiento?*:</label>
+                                                                {!! Form::text('manualMantenimiento', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
                                                             <div class="form-group">
-                                                                <label for="">¿El sistema cuenta con una
-                                                                    política de
-                                                                    privacidad?</label>
-                                                                {!! Form::text('politicaPrivacidad', null, ['class' => 'form-control']) !!}
+                                                                <label for="">¿El sistema cuenta con una política
+                                                                    de privacidad?*:</label>
+                                                                {!! Form::text('politicaPrivacidad', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -482,10 +683,15 @@
                                                         @endfor
                                                     </div>
                                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                        <input class="btn btn-info" style="margin: 1%" type="reset"
-                                                            value="Restablecer">
-                                                        <input class="btn btn-primary" style="margin: 1%" type="submit"
-                                                            value="Guardar">
+                                                        <div style="flex-grow: 1;">
+                                                            <p>* Campos Obligatorios</p>
+                                                        </div>
+                                                        <div class="d-flex flex-column flex-md-row justify-content-md-end">
+                                                            <input class="btn btn-info ms-md-2" type="reset"
+                                                                value="Restablecer" style="margin: 3%">
+                                                            <input class="btn btn-success ms-md-2" type="submit"
+                                                                value="Guardar" style="margin: 3%">
+                                                        </div>
                                                     </div>
                                                     {!! Form::close() !!}
                                                 </div>
@@ -494,9 +700,8 @@
                                     </div>
                                 </div>
 
-
                                 <div class="carousel-item">
-                                    <h3 class="page__heading" style="padding: 1%;">Seguridad.</h3>
+                                    <h2 class="page__heading text-center" style="padding: 1%;">Seguridad.</h2>
                                     <div class="section-body">
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -506,7 +711,8 @@
                                                             role="alert">
                                                             <strong>¡Revise los campos!</strong>
                                                             @foreach ($errors->all() as $error)
-                                                                <span class="badge badge-danger">{{ $error }}</span>
+                                                                <span
+                                                                    class="badge badge-danger">{{ $error }}</span>
                                                             @endforeach
                                                             <button type="button" class="close" data-dismiss="alert"
                                                                 aria-label="Close">
@@ -514,14 +720,14 @@
                                                             </button>
                                                         </div>
                                                     @endif
-    
+
                                                     {!! Form::open(['route' => ['seguridad.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
                                                             <div class="form-group">
                                                                 <label for="">¿Se han determinado roles y
-                                                                    responsabilidades?</label>
-                                                                {!! Form::text('determinarRoles', null, ['class' => 'form-control']) !!}
+                                                                    responsabilidades?*:</label>
+                                                                {!! Form::text('determinarRoles', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
@@ -530,8 +736,8 @@
                                                                     procesos de borrado
                                                                     seguro de acuerdo a las políticas de seguridad
                                                                     de la información de
-                                                                    la CONDUSEF?</label>
-                                                                {!! Form::text('procesoBorrado', null, ['class' => 'form-control']) !!}
+                                                                    la CONDUSEF?*:</label>
+                                                                {!! Form::text('procesoBorrado', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
@@ -540,8 +746,8 @@
                                                                     control de accesos de
                                                                     acuerdo a las políticas de seguridad de la
                                                                     información de la
-                                                                    CONDUSEF?</label>
-                                                                {!! Form::text('controlAcceso', null, ['class' => 'form-control']) !!}
+                                                                    CONDUSEF?*:</label>
+                                                                {!! Form::text('controlAcceso', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
@@ -551,29 +757,28 @@
                                                                     deberes, derechos y demás obligaciones en la
                                                                     materia junto con las
                                                                     sanciones que se ejercerán en caso de
-                                                                    incumplimiento?</label>
-                                                                {!! Form::text('conocimientoPrincipios', null, ['class' => 'form-control']) !!}
+                                                                    incumplimiento?*:</label>
+                                                                {!! Form::text('conocimientoPrincipios', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
                                                             <div class="form-group">
                                                                 <label for="">Protocolo de seguridad de la
-                                                                    información</label>
-                                                                {!! Form::text('protocoloSeguridad', null, ['class' => 'form-control']) !!}
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                            <div class="form-group">
-                                                                <label for="">ID de la plataforma: </label>
-                                                                <header> {{ $sistema->id }}</header>
+                                                                    información*:</label>
+                                                                {!! Form::text('protocoloSeguridad', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                        <input class="btn btn-info" style="margin: 1%" type="reset"
-                                                            value="Restablecer">
-                                                        <input class="btn btn-primary" style="margin: 1%" type="submit"
-                                                            value="Guardar">
+                                                        <div style="flex-grow: 1;">
+                                                            <p>* Campos Obligatorios</p>
+                                                        </div>
+                                                        <div class="d-flex flex-column flex-md-row justify-content-md-end">
+                                                            <input class="btn btn-info ms-md-2" type="reset"
+                                                                value="Restablecer" style="margin: 3%">
+                                                            <input class="btn btn-success ms-md-2" type="submit"
+                                                                value="Guardar" style="margin: 3%">
+                                                        </div>
                                                     </div>
                                                     {!! Form::close() !!}
                                                 </div>
@@ -581,10 +786,11 @@
                                         </div>
                                     </div>
                                 </div>
-    
+
                                 <div class="carousel-item">
-                                    <h3 class="page__heading" style="padding: 1%;">Datos Personales Incluidos en el
-                                        Sistema.</h3>
+                                    <h2 class="page__heading text-center" style="padding: 1%;">Datos Personales Incluidos
+                                        en el
+                                        Sistema.</h2>
                                     <div class="section-body">
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -594,7 +800,8 @@
                                                             role="alert">
                                                             <strong>¡Revise los campos!</strong>
                                                             @foreach ($errors->all() as $error)
-                                                                <span class="badge badge-danger">{{ $error }}</span>
+                                                                <span
+                                                                    class="badge badge-danger">{{ $error }}</span>
                                                             @endforeach
                                                             <button type="button" class="close" data-dismiss="alert"
                                                                 aria-label="Close">
@@ -602,27 +809,27 @@
                                                             </button>
                                                         </div>
                                                     @endif
-    
+
                                                     {!! Form::open(['route' => ['datosPersonal.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">¿El sistema maneja datos
-                                                                    personales?</label>
-                                                                {!! Form::text('manejoDatosPersonales', null, ['class' => 'form-control']) !!}
+                                                                    personales?*:</label>
+                                                                {!! Form::text('manejoDatosPersonales', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Fundamento legal</label>
-                                                                {!! Form::text('fundamentoLegal', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Fundamento legal*:</label>
+                                                                {!! Form::text('fundamentoLegal', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Tipo de datos
-                                                                    personales</label>
-                                                                {!! Form::text('tipoDatosPersonales', null, ['class' => 'form-control']) !!}
+                                                                    personales*:</label>
+                                                                {!! Form::text('tipoDatosPersonales', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -631,51 +838,50 @@
                                                             <div class="form-group">
                                                                 <label for="">Formas de obtención de los
                                                                     datos
-                                                                    personales</label>
-                                                                {!! Form::text('formaObtencion', null, ['class' => 'form-control']) !!}
+                                                                    personales*:</label>
+                                                                {!! Form::text('formaObtencion', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Portabilidad de datos</label>
-                                                                {!! Form::text('portabilidadDatos', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Portabilidad de datos*:</label>
+                                                                {!! Form::text('portabilidadDatos', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Transferencia de
-                                                                    datos</label>
-                                                                {!! Form::text('transferenciaDatos', null, ['class' => 'form-control']) !!}
+                                                                    datos*:</label>
+                                                                {!! Form::text('transferenciaDatos', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Tipo de soporte</label>
-                                                                {!! Form::text('tipoSoporte', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Tipo de soporte*:</label>
+                                                                {!! Form::text('tipoSoporte', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">El sistema cuenta con Aviso
                                                                     de
-                                                                    Privacidad</label>
-                                                                {!! Form::text('avisoPrivacidad', null, ['class' => 'form-control']) !!}
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                            <div class="form-group">
-                                                                <label for="">ID de la plataforma: </label>
-                                                                <header> {{ $sistema->id }}</header>
+                                                                    Privacidad*:</label>
+                                                                {!! Form::text('avisoPrivacidad', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                        <input class="btn btn-info" style="margin: 1%" type="reset"
-                                                            value="Restablecer">
-                                                        <input class="btn btn-primary" style="margin: 1%" type="submit"
-                                                            value="Guardar">
+                                                        <div style="flex-grow: 1;">
+                                                            <p>* Campos Obligatorios</p>
+                                                        </div>
+                                                        <div class="d-flex flex-column flex-md-row justify-content-md-end">
+                                                            <input class="btn btn-info ms-md-2" type="reset"
+                                                                value="Restablecer" style="margin: 3%">
+                                                            <input class="btn btn-success ms-md-2" type="submit"
+                                                                value="Guardar" style="margin: 3%">
+                                                        </div>
                                                     </div>
                                                     {!! Form::close() !!}
                                                 </div>
@@ -683,9 +889,9 @@
                                         </div>
                                     </div>
                                 </div>
-    
+
                                 <div class="carousel-item">
-                                    <h3 class="page__heading" style="padding: 1%;">Mantenimiento.</h3>
+                                    <h2 class="page__heading text-center" style="padding: 1%;">Mantenimiento.</h2>
                                     <div class="section-body">
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -695,7 +901,8 @@
                                                             role="alert">
                                                             <strong>¡Revise los campos!</strong>
                                                             @foreach ($errors->all() as $error)
-                                                                <span class="badge badge-danger">{{ $error }}</span>
+                                                                <span
+                                                                    class="badge badge-danger">{{ $error }}</span>
                                                             @endforeach
                                                             <button type="button" class="close" data-dismiss="alert"
                                                                 aria-label="Close">
@@ -703,49 +910,48 @@
                                                             </button>
                                                         </div>
                                                     @endif
-    
+
                                                     {!! Form::open(['route' => ['mantenimiento.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">¿El sistema requiere
-                                                                    mantenimiento?</label>
-                                                                {!! Form::text('requiereMantenimiento', null, ['class' => 'form-control']) !!}
+                                                                    mantenimiento?*:</label>
+                                                                {!! Form::text('requiereMantenimiento', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Tipo de mantenimiento</label>
-                                                                {!! Form::text('tipoMantenimiento', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Tipo de mantenimiento*:</label>
+                                                                {!! Form::text('tipoMantenimiento', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Descripción del
-                                                                    mantenimiento</label>
-                                                                {!! Form::text('descripcionMantenimiento', null, ['class' => 'form-control']) !!}
+                                                                    mantenimiento*:</label>
+                                                                {!! Form::text('descripcionMantenimiento', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Periocidad de
-                                                                    mantenimiento</label>
-                                                                {!! Form::text('periocidadMantenimiento', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Periocidad de mantenimiento*:</label>
+                                                                {!! Form::text('periocidadMantenimiento', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Área responsable</label>
-                                                                {!! Form::text('areaResponsable', null, ['class' => 'form-control']) !!}
+                                                                <label for="">Área responsable*:</label>
+                                                                {!! Form::text('areaResponsable', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Nombre del técnico
-                                                                    responsable</label>
-                                                                {!! Form::text('nombreTecnicoResponsable', null, ['class' => 'form-control']) !!}
+                                                                    responsable*:</label>
+                                                                {!! Form::text('nombreTecnicoResponsable', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -753,22 +959,21 @@
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Nombre del coordinador de
-                                                                    mantenimiento</label>
-                                                                {!! Form::text('nombreCoordinador', null, ['class' => 'form-control']) !!}
+                                                                    mantenimiento*:</label>
+                                                                {!! Form::text('nombreCoordinador', null, ['class' => 'form-control', 'required' => 'required']) !!}
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                        <div class="form-group">
-                                                            <label for="">ID de la plataforma: </label>
-                                                            <header> {{ $sistema->id }}</header>
-                                                        </div>
-                                                    </div>
                                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                        <input class="btn btn-info" style="margin: 1%" type="reset"
-                                                            value="Restablecer">
-                                                        <input class="btn btn-primary" style="margin: 1%" type="submit"
-                                                            value="Guardar">
+                                                        <div style="flex-grow: 1;">
+                                                            <p>* Campos Obligatorios</p>
+                                                        </div>
+                                                        <div class="d-flex flex-column flex-md-row justify-content-md-end">
+                                                            <input class="btn btn-info ms-md-2" type="reset"
+                                                                value="Restablecer" style="margin: 3%">
+                                                            <input class="btn btn-success ms-md-2" type="submit"
+                                                                value="Guardar" style="margin: 3%">
+                                                        </div>
                                                     </div>
                                                     {!! Form::close() !!}
                                                 </div>
@@ -779,946 +984,104 @@
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleInterval" role="button"
-                            data-bs-slide="prev" style="background-color: aquamarine; height: 10px; width: 30px;">
+                            data-bs-slide="prev" style="background-color: #98ff96; height: 30px; width: 15%;">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
+                            <span class="visually-hidden"
+                                style="background-color: #98ff96; height: 30px; width: 60%; color:black;">Previo</span>
                         </a>
                         <a class="carousel-control-next" href="#carouselExampleInterval" role="button"
-                            data-bs-slide="next" style="background-color: aquamarine; height: 10px; width: 30px;">
+                            data-bs-slide="next" style="background-color: #98ff96; height: 30px; width: 15%;">
+                            <span class="visually-hidden"
+                                style="background-color: #98ff96; height: 30px; width: 60%; color:black;">Siguiente</span>
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 @stop
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
-</script>
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script type="text/javascript">
-    $('#datetimepicker').datatimepicker({
-        format: 'yyyy-mm-dd'
-    });
-</script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+    </script>
 
-{{-- <section class="section">
-        <div class="section-header">
-            <br>
-        </div>
-        <div class="section-body">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            @if ($errors->any())
-                                <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                                    <strong>¡Revise los campos!</strong>
-                                    @foreach ($errors->all() as $error)
-                                        <span class="badge badge-danger">{{ $error }}</span>
-                                    @endforeach
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif
+    <script>
+        $(document).ready(function() {
+            $('#datetimepicker').datetimepicker({
+                format: 'YYYY-MM-DD'
+            });
+        });
+    </script>
 
-                            @if (session('Mensaje'))
-                                <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                                    {{ session('Mensaje') }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif
+    <!-- Script de SweetAlert -->
+    @if (session('success_sistema_registrado'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '¡Sistema registrado exitosamente!',
+                showConfirmButton: false,
+                timer: 3500
+            });
+        </script>
+    @endif
 
-                            <div id="carouselExampleControls" class="carousel slide" data-bs-interval="false">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <h3 class="page__heading">Roles del Sistema.</h3>
-                                        <div class="section-body">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            @if ($errors->any())
-                                                                <div class="alert alert-dark alert-dismissible fade show"
-                                                                    role="alert">
-                                                                    <strong>¡Revise los campos!</strong>
-                                                                    @foreach ($errors->all() as $error)
-                                                                        <span
-                                                                            class="badge badge-danger">{{ $error }}</span>
-                                                                    @endforeach
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="alert" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                            @endif
+    @if (session('success_rol_registrado'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '¡Roles registrados exitosamente!',
+                showConfirmButton: false,
+                timer: 3500
+            });
+        </script>
+    @endif
 
-                                                            {!! Form::open(['route' => ['rolsistemas.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Líder del proyecto: </label>
-                                                                        {!! Form::text('nombreLiderProyecto', old('nombreLiderProyecto'), ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Puesto del Líder del proyecto:
-                                                                        </label>
-                                                                        {!! Form::text('puestoLiderProyecto', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Administrador del proyecto:
-                                                                        </label>
-                                                                        {!! Form::text('nombreAdministradorProyecto', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Puesto del administrador del
-                                                                            proyecto: </label>
-                                                                        {!! Form::text('puestoAdministradorProyecto', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Desarrollador/Programador:
-                                                                        </label>
-                                                                        {!! Form::text('nombreDesarrollador', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Puesto del
-                                                                            Desarrollador/Programador </label>
-                                                                        {!! Form::text('puestoDesarrollador', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Área usuaria </label>
-                                                                        {!! Form::text('areaUsuaria', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Puesto del usuario: </label>
-                                                                        {!! Form::text('puestoUsuario', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">ID de la plataforma: </label>
-                                                                        <header> {{ $sistema->id }}</header>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                                <input class="btn btn-info" style="margin: 1%"
-                                                                    type="reset" value="Restablecer">
-                                                                <input class="btn btn-primary" style="margin: 1%"
-                                                                    type="submit" value="Guardar">
-                                                            </div>
-                                                            {!! Form::close() !!}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+    @if (session('success_informacion_registrado'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '¡Información registrada exitosamente!',
+                showConfirmButton: false,
+                timer: 3500
+            });
+        </script>
+    @endif
 
-                                    <div class="carousel-item">
-                                        <h3 class="page__heading">Información General.</h3>
-                                        <div class="section-body">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            @if ($errors->any())
-                                                                <div class="alert alert-dark alert-dismissible fade show"
-                                                                    role="alert">
-                                                                    <strong>¡Revise los campos!</strong>
-                                                                    @foreach ($errors->all() as $error)
-                                                                        <span
-                                                                            class="badge badge-danger">{{ $error }}</span>
-                                                                    @endforeach
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="alert" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                            @endif
+    <!-- Script de AJAX para manejar el envío del formulario sin recargar la página -->
+    <script>
+        $(document).ready(function() {
+            $('#informacionForm').submit(function(e) {
+                e.preventDefault();
 
-                                                            {!! Form::open(['route' => ['informacion.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Año que el sistema comenzó
-                                                                            operaciones: </label>
-                                                                        {!! Form::text('anoComienzoOperaciones', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿El sistema solo es para
-                                                                            consultar
-                                                                            información?</label>
-                                                                        {!! Form::text('consultaInformacion', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿El sistema requiere
-                                                                            actualización? </label>
-                                                                        {!! Form::text('requiereActualizacion', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Fecha de última actualización
-                                                                            del sistema:
-                                                                        </label>
-                                                                        {!! Form::date('fechaUltimaActualizacion', null, ['class' => 'form-control', 'id'=>'datatimepicker']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Datos abiertos:</label>
-                                                                        {!! Form::text('datosAbiertos', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Tipo de publicación:</label>
-                                                                        {!! Form::text('tipoPublicacion', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Nivel de interacción:</label>
-                                                                        {!! Form::text('nivelInteraccion', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Fase Actual: </label>
-                                                                        {!! Form::text('faseActual', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Etapa en el que se encuentra
-                                                                            el sistema:</label>
-                                                                        {!! Form::text('etapaActual', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Sub-etapa en el que se
-                                                                            encuentra el
-                                                                            sistema:</label>
-                                                                        {!! Form::text('subEtapaActual', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿El Sistema es legado?
-                                                                        </label>
-                                                                        {!! Form::text('legado', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Modelo de operación:</label>
-                                                                        {!! Form::text('modeloOperacion', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Interacción con
-                                                                            dependencias:</label>
-                                                                        {!! Form::text('interaccionDependencias', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Interacción con otras
-                                                                            áreas</label>
-                                                                        {!! Form::text('interaccionOtrasAreas', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿El sistema se encuentra
-                                                                            migrado?</label>
-                                                                        {!! Form::text('migrado', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">ID de la plataforma: </label>
-                                                                        <header> {{ $sistema->id }}</header>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                                <input class="btn btn-info" style="margin: 1%"
-                                                                    type="reset" value="Restablecer">
-                                                                <input class="btn btn-primary" style="margin: 1%"
-                                                                    type="submit" value="Guardar">
-                                                            </div>
-                                                            {!! Form::close() !!}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                // Realiza la petición AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        // Muestra el mensaje de éxito después de enviar el formulario
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: '¡Información registrada exitosamente!',
+                            showConfirmButton: false,
+                            timer: 3500
+                        });
+                    },
+                    error: function(error) {
+                        console.error('Error en la petición AJAX:', error);
+                    }
+                });
+            });
+        });
+    </script>
 
-                                    <div class="carousel-item">
-                                        <h3 class="page__heading">Características Técnicas.</h3>
-                                        <div class="section-body">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            @if ($errors->any())
-                                                                <div class="alert alert-dark alert-dismissible fade show"
-                                                                    role="alert">
-                                                                    <strong>¡Revise los campos!</strong>
-                                                                    @foreach ($errors->all() as $error)
-                                                                        <span
-                                                                            class="badge badge-danger">{{ $error }}</span>
-                                                                    @endforeach
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="alert" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                            @endif
-                                                            
-                                                            {!! Form::open(['route' => ['caracteristica.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Sistema Operativo: </label>
-                                                                        {!! Form::text('sistemaOperativo', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Control de Versiones:
-                                                                        </label>
-                                                                        {!! Form::text('controlVersiones', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Versión del sistema </label>
-                                                                        {!! Form::text('versionSistema', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Lenguaje de programación del
-                                                                            sistema: </label>
-                                                                        {!! Form::text('lenguajeProgramacion', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Interacción con otro lenguaje
-                                                                            de
-                                                                            programación:</label>
-                                                                        {!! Form::text('otroLenguajeProgramacion', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Frameworks:</label>
-                                                                        {!! Form::text('frameworks', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Despliegue:</label>
-                                                                        {!! Form::text('despliegue', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Si es otro servidor web,
-                                                                            especificarlo:</label>
-                                                                        {!! Form::text('otroServidorWeb', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Manejador de base de
-                                                                            datos:</label>
-                                                                        {!! Form::text('manejadorBD', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Nombre de la base de
-                                                                            datos:</label>
-                                                                        {!! Form::text('nombreBD', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Plataforma de desarrollo de
-                                                                            software:</label>
-                                                                        {!! Form::text('plataformaDesarrollo', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿El sistema hace uso de una
-                                                                            API?</label>
-                                                                        {!! Form::text('usoAPI', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">ID de la plataforma: </label>
-                                                                        <header> {{ $sistema->id }}</header>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                                <input class="btn btn-info" style="margin: 1%"
-                                                                    type="reset" value="Restablecer">
-                                                                <input class="btn btn-primary" style="margin: 1%"
-                                                                    type="submit" value="Guardar">
-                                                            </div>
-                                                            {!! Form::close() !!}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="carousel-item">
-                                        <h3 class="page__heading">Documentación.</h3>
-                                        <div class="section-body">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            @if ($errors->any())
-                                                                <div class="alert alert-dark alert-dismissible fade show"
-                                                                    role="alert">
-                                                                    <strong>¡Revise los campos!</strong>
-                                                                    @foreach ($errors->all() as $error)
-                                                                        <span
-                                                                            class="badge badge-danger">{{ $error }}</span>
-                                                                    @endforeach
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="alert" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                            @endif
-
-                                                            {!! Form::open(['route' => ['documento.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿El sistema se encuentra
-                                                                            documentado con base en
-                                                                            la normatividad de la Adminstración Pública
-                                                                            General?</label>
-                                                                        {!! Form::text('documentado', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿El sistema tiene un manual
-                                                                            de usuario?</label>
-                                                                        {!! Form::text('manualUsuario', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿El sistema tiene un manual
-                                                                            técnico?</label>
-                                                                        {!! Form::text('manualTecnico', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿El sistema tiene un manual
-                                                                            de
-                                                                            mantenimiento?</label>
-                                                                        {!! Form::text('manualMantenimiento', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿El sistema cuenta con una
-                                                                            política de
-                                                                            privacidad?</label>
-                                                                        {!! Form::text('politicaPrivacidad', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <h4>Subir Documentación del Sistema.</h4>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">F1 - Acta de constitución del
-                                                                            proyecto</label>
-                                                                        {!! Form::file('nombreArchivo', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">F2 - Acta de aceptación de
-                                                                            entregables</label>
-                                                                        {!! Form::file('nombreArchivo', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">F3 - Acta de cierre de
-                                                                            proyecto</label>
-                                                                        {!! Form::file('nombreArchivo', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">L1 - Cédula de identificación
-                                                                            de
-                                                                            proyectos</label>
-                                                                        {!! Form::file('nombreArchivo', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">L2 - Formato de
-                                                                            minutas</label>
-                                                                        {!! Form::file('nombreArchivo', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">L3 - Plan de pruebas</label>
-                                                                        {!! Form::file('nombreArchivo', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">L4 - Matriz de
-                                                                            pruebas</label>
-                                                                        {!! Form::file('nombreArchivo', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">L5 - Solicitud de
-                                                                            cambios</label>
-                                                                        {!! Form::file('nombreArchivo', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">L6 - Asignación usuario
-                                                                            perfil</label>
-                                                                        {!! Form::file('nombreArchivo', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">L7 - Reporte de
-                                                                            avance</label>
-                                                                        {!! Form::file('nombreArchivo', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">L8 - Análisis de
-                                                                            requerimientos</label>
-                                                                        {!! Form::file('nombreArchivo', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">L9 - Especificación de
-                                                                            requerimientos</label>
-                                                                        {!! Form::file('nombreArchivo', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-12 col-md-4 col-xl-12">
-                                                                    <div class="form-group">
-                                                                        <label for="">L10 - Plantilla elaboración
-                                                                            de manuales</label>
-                                                                        <br>
-                                                                        {!! Form::file('nombreArchivo', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                                <input class="btn btn-info" style="margin: 1%"
-                                                                    type="reset" value="Restablecer">
-                                                                <input class="btn btn-primary" style="margin: 1%"
-                                                                    type="submit" value="Guardar">
-                                                            </div>
-                                                            {!! Form::close() !!}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="carousel-item">
-                                        <h3 class="page__heading">Seguridad.</h3>
-                                        <div class="section-body">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            @if ($errors->any())
-                                                                <div class="alert alert-dark alert-dismissible fade show"
-                                                                    role="alert">
-                                                                    <strong>¡Revise los campos!</strong>
-                                                                    @foreach ($errors->all() as $error)
-                                                                        <span
-                                                                            class="badge badge-danger">{{ $error }}</span>
-                                                                    @endforeach
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="alert" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                            @endif
-
-                                                            {!! Form::open(['route' => ['seguridad.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿Se han determinado roles y
-                                                                            responsabilidades?</label>
-                                                                        {!! Form::text('determinarRoles', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿Se tiene identificado los
-                                                                            procesos de borrado
-                                                                            seguro de acuerdo a las políticas de seguridad
-                                                                            de la información de
-                                                                            la CONDUSEF?</label>
-                                                                        {!! Form::text('procesoBorrado', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿El sistema cuenta con un
-                                                                            control de accesos de
-                                                                            acuerdo a las políticas de seguridad de la
-                                                                            información de la
-                                                                            CONDUSEF?</label>
-                                                                        {!! Form::text('controlAcceso', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿Se cuenta con el
-                                                                            conocimiento de los principios,
-                                                                            deberes, derechos y demás obligaciones en la
-                                                                            materia junto con las
-                                                                            sanciones que se ejercerán en caso de
-                                                                            incumplimiento?</label>
-                                                                        {!! Form::text('conocimientoPrincipios', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
-                                                                    <div class="form-group">
-                                                                        <label for="">Protocolo de seguridad de la
-                                                                            información</label>
-                                                                        {!! Form::text('protocoloSeguridad', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">ID de la plataforma: </label>
-                                                                        <header> {{ $sistema->id }}</header>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                                <input class="btn btn-info" style="margin: 1%"
-                                                                    type="reset" value="Restablecer">
-                                                                <input class="btn btn-primary" style="margin: 1%"
-                                                                    type="submit" value="Guardar">
-                                                            </div>
-                                                            {!! Form::close() !!}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="carousel-item">
-                                        <h3 class="page__heading">Datos Personales Incluidos en el Sistema.</h3>
-                                        <div class="section-body">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            @if ($errors->any())
-                                                                <div class="alert alert-dark alert-dismissible fade show"
-                                                                    role="alert">
-                                                                    <strong>¡Revise los campos!</strong>
-                                                                    @foreach ($errors->all() as $error)
-                                                                        <span
-                                                                            class="badge badge-danger">{{ $error }}</span>
-                                                                    @endforeach
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="alert" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                            @endif
-                                                            
-                                                            {!! Form::open(['route' => ['datosPersonal.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿El sistema maneja datos
-                                                                            personales?</label>
-                                                                        {!! Form::text('manejoDatosPersonales', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Fundamento legal</label>
-                                                                        {!! Form::text('fundamentoLegal', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Tipo de datos
-                                                                            personales</label>
-                                                                        {!! Form::text('tipoDatosPersonales', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Formas de obtención de los
-                                                                            datos
-                                                                            personales</label>
-                                                                        {!! Form::text('formaObtencion', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Portabilidad de datos</label>
-                                                                        {!! Form::text('portabilidadDatos', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Transferencia de
-                                                                            datos</label>
-                                                                        {!! Form::text('transferenciaDatos', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Tipo de soporte</label>
-                                                                        {!! Form::text('tipoSoporte', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">El sistema cuenta con Aviso
-                                                                            de
-                                                                            Privacidad</label>
-                                                                        {!! Form::text('avisoPrivacidad', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">ID de la plataforma: </label>
-                                                                        <header> {{ $sistema->id }}</header>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                                <input class="btn btn-info" style="margin: 1%"
-                                                                    type="reset" value="Restablecer">
-                                                                <input class="btn btn-primary" style="margin: 1%"
-                                                                    type="submit" value="Guardar">
-                                                            </div>
-                                                            {!! Form::close() !!}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="carousel-item">
-                                        <h3 class="page__heading">Mantenimiento.</h3>
-                                        <div class="section-body">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            @if ($errors->any())
-                                                                <div class="alert alert-dark alert-dismissible fade show"
-                                                                    role="alert">
-                                                                    <strong>¡Revise los campos!</strong>
-                                                                    @foreach ($errors->all() as $error)
-                                                                        <span
-                                                                            class="badge badge-danger">{{ $error }}</span>
-                                                                    @endforeach
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="alert" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                            @endif
-
-                                                            {!! Form::open(['route' => ['mantenimiento.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">¿El sistema requiere
-                                                                            mantenimiento?</label>
-                                                                        {!! Form::text('requiereMantenimiento', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Tipo de mantenimiento</label>
-                                                                        {!! Form::text('tipoMantenimiento', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Descripción del
-                                                                            mantenimiento</label>
-                                                                        {!! Form::text('descripcionMantenimiento', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Periocidad de
-                                                                            mantenimiento</label>
-                                                                        {!! Form::text('periocidadMantenimiento', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Área responsable</label>
-                                                                        {!! Form::text('areaResponsable', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Nombre del técnico
-                                                                            responsable</label>
-                                                                        {!! Form::text('nombreTecnicoResponsable', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                    <div class="form-group">
-                                                                        <label for="">Nombre del coordinador de
-                                                                            mantenimiento</label>
-                                                                        {!! Form::text('nombreCoordinador', null, ['class' => 'form-control']) !!}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                <div class="form-group">
-                                                                    <label for="">ID de la plataforma: </label>
-                                                                    <header> {{ $sistema->id }}</header>
-                                                                </div>
-                                                            </div>
-                                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                                <input class="btn btn-info" style="margin: 1%"
-                                                                    type="reset" value="Restablecer">
-                                                                <input class="btn btn-primary" style="margin: 1%"
-                                                                    type="submit" value="Guardar">
-                                                            </div>
-                                                            {!! Form::close() !!}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
-                                    data-slide="prev" style="background-color: aquamarine; height: 10px; width: 30px;">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExampleControls" role="button"
-                                    data-slide="next" style="background-color: aquamarine height: 10px; width: 30px;">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
+@stop

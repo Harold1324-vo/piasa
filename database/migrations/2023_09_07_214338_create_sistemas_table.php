@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('sistemas', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('nombreSistema', 200);
-            $table->string('descripcion', 500);
+            $table->text('descripcion');
             $table->string('siglas', 50);
-            $table->string('clasificacion', 50);
+            $table->string('clasificacion', 100);
             $table->string('areaDesarrolladora', 50);
             $table->string('estadoActivo', 20);
-            $table->string('url', 100);
+            $table->string('url', 200);
             $table->string('consecutivo', 50);
 
             //Creación del campo que será la FK

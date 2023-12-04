@@ -150,7 +150,7 @@
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <div class="d-flex flex-column flex-md-row justify-content-md-end">
                                     <input class="btn btn-secondary ms-md-2" type="button" value="Regresar"
-                                    onclick="window.location.href='{{ route('usuario.index') }}'" style="margin: 3%">
+                                    onclick="window.location.href='{{ route('sistema.index') }}'" style="margin: 3%">
                                     <input class="btn btn-info ms-md-2" type="reset" value="Restablecer" style="margin: 3%">
                                     <input class="btn btn-primary ms-md-2" type="submit" value="Guardar" style="margin: 3%">
                                 </div>

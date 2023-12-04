@@ -27,8 +27,8 @@ return new class extends Migration
             $table->string('faseActual', 50);
             $table->string('legado', 20);
             $table->string('modeloOperacion', 50);
-            $table->string('interaccionDependencias', 50);
-            $table->string('interaccionOtrasAreas', 50);
+            $table->string('interaccionDependencias', 255);
+            $table->string('interaccionOtrasAreas', 255);
             $table->string('migrado', 50);
 
             //Creación del campo que será la FK

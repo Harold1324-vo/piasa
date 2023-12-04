@@ -13,18 +13,6 @@
                     <div class="card">
                         <h2 class="text-center" style="padding-top: 1%">Editar Usuario</h2>
                         <div class="card-body">
-                            @if ($errors->any())
-                                <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                                    <strong>¡Revise los campos!</strong>
-                                    @foreach ($errors->all() as $error)
-                                        <span class="badge badge-danger">{{ $error }}</span>
-                                    @endforeach
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif
-
                             {!! Form::model($user, ['method' => 'PUT', 'route' => ['usuario.update', $user->id]]) !!}
                             <div class="row">
                                 <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">

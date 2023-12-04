@@ -15,10 +15,10 @@ class SistemaController extends Controller
     {
         /*Se definen los permisos definidos en el SeederTablaPermisos.
             only hace referencia a que solo tendŕan esos permisos para ejecutar el método especificado.*/
-        $this->middleware('permission:ver-procesos|crear-procesos|editar-procesos|borrar-procesos', ['only'=>['index']]);
-        $this->middleware('permission:crear-procesos', ['only' =>['create','store']]);
-        $this->middleware('permission:editar-procesos', ['only' =>['edit','update']]);
-        $this->middleware('permission:borrar-procesos', ['only' =>['destroy']]);
+        $this->middleware('permission:ver-procesos|crear-procesos|editar-procesos|borrar-procesos', ['only' => ['index']]);
+        $this->middleware('permission:crear-procesos', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-procesos', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:borrar-procesos', ['only' => ['destroy']]);
     }
 
     /**
@@ -29,24 +29,24 @@ class SistemaController extends Controller
         $anios = Informacion::select('anoComienzoOperaciones')->distinct()->pluck('anoComienzoOperaciones');
         return view('sistema.index', compact('anios'));
     }
-    
 
-// app/Http/Controllers/InformacionController.php
-public function mostrarSistemasPorAno($ano)
-{
-    if (Auth::user()->hasRole('Administrador')) {
-        $informacionPorAno = Informacion::where('anoComienzoOperaciones', $ano)->with('sistema')->paginate(10);
-    } else {
-        $usuarioId = Auth::user()->id;
-        $informacionPorAno = Informacion::where('anoComienzoOperaciones', $ano)
-            ->whereHas('sistema', function ($query) use ($usuarioId) {
-                $query->where('idUsuario', $usuarioId);
-            })
-            ->paginate(10);
+
+    // app/Http/Controllers/InformacionController.php
+    public function mostrarSistemasPorAno($ano)
+    {
+        if (Auth::user()->hasRole('Administrador')) {
+            $informacionPorAno = Informacion::where('anoComienzoOperaciones', $ano)->with('sistema')->paginate(10);
+        } else {
+            $usuarioId = Auth::user()->id;
+            $informacionPorAno = Informacion::where('anoComienzoOperaciones', $ano)
+                ->whereHas('sistema', function ($query) use ($usuarioId) {
+                    $query->where('idUsuario', $usuarioId);
+                })
+                ->paginate(10);
+        }
+
+        return view('sistema.showsistema', compact('informacionPorAno', 'ano'));
     }
-
-    return view('sistema.showsistema', compact('informacionPorAno', 'ano'));
-}
 
 
 
@@ -66,14 +66,14 @@ public function mostrarSistemasPorAno($ano)
     {
         //
         $this->validate($request, [
-            'nombreSistema' => 'required',
-            'descripcion' => 'required',
-            'siglas' => 'required',
-            'clasificacion' => 'required',
-            'areaDesarrolladora' => 'required',
-            'estadoActivo' => 'required',
-            'url' => 'required',
-            'consecutivo' => 'required'
+            'nombreSistema' => 'required|string|min:3|max:255',
+            'descripcion' => 'required|string|min:3|max:500',
+            'siglas' => 'required|string|min:3|max:255',
+            'clasificacion' => 'required|string|min:3|max:255',
+            'areaDesarrolladora' => 'required|string|min:3|max:255',
+            'estadoActivo' => 'required|string|min:2|max:255',
+            'url' => 'required|string|min:3|max:255',
+            'consecutivo' => 'required|string|min:3|max:255'
         ]);
 
         //Obtener el ID del usuario autenticado
@@ -92,18 +92,21 @@ public function mostrarSistemasPorAno($ano)
 
         $sistemaRegistro->idUsuario = $userId;
 
-        $sistemaRegistro->nombreSistema=$nombreSistema;
-        $sistemaRegistro->descripcion=$descripcion;
-        $sistemaRegistro->siglas=$siglas;
-        $sistemaRegistro->clasificacion=$clasificacion;
-        $sistemaRegistro->areaDesarrolladora=$areaDesarrolladora;
-        $sistemaRegistro->estadoActivo=$estadoActivo;
-        $sistemaRegistro->url=$url;
-        $sistemaRegistro->consecutivo=$consecutivo;
+        $sistemaRegistro->nombreSistema = $nombreSistema;
+        $sistemaRegistro->descripcion = $descripcion;
+        $sistemaRegistro->siglas = $siglas;
+        $sistemaRegistro->clasificacion = $clasificacion;
+        $sistemaRegistro->areaDesarrolladora = $areaDesarrolladora;
+        $sistemaRegistro->estadoActivo = $estadoActivo;
+        $sistemaRegistro->url = $url;
+        $sistemaRegistro->consecutivo = $consecutivo;
 
         $sistemaRegistro->save();
 
-        return redirect()->back()->with('Mensaje', 'Genial xd');
+        // Obtener el ID del sistema recién creado
+        $idSistema = $sistemaRegistro->id;
+
+        return redirect()->route('sistema.show', ['sistema' => $idSistema])->with(['success_sistema_registrado' => '¡Sistema registrado exitosamente!']);
     }
 
     /**
@@ -233,7 +236,8 @@ public function mostrarSistemasPorAno($ano)
         return redirect()->route('sistema.index');
     }
 
-    public function generarReporte(){
+    public function generarReporte()
+    {
         return view('reporte');
     }
 }

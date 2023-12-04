@@ -87,7 +87,7 @@ class InformacionController extends Controller
         
         $informacion->save();
 
-        return redirect()->back()->with('Mensaje', 'Genial xd');
+        return redirect()->back()->with(['success_informacion_registrado' => '¡Información registrada exitosamente!']);
     }
 
     /**
@@ -158,7 +158,7 @@ class InformacionController extends Controller
 
         $informacion->save();
 
-        return redirect()->back()->with('Mensaje', 'Datos actualizados correctamente');
+        return redirect()->back()->with(['success_informacion_registrado' => '¡Información registrada exitosamente!']);
 
     }
 

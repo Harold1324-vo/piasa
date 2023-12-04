@@ -34,14 +34,14 @@ class RolSistemasController extends Controller
 
         //
         $this->validate($request, [
-            'nombreLiderProyecto' => 'required',
-            'puestoLiderProyecto' => 'required',
-            'nombreAdministradorProyecto' => 'required',
-            'puestoAdministradorProyecto' => 'required',
-            'nombreDesarrollador' => 'required',
-            'puestoDesarrollador' => 'required',
-            'areaUsuaria' => 'required',
-            'puestoUsuario' => 'required',
+            'nombreLiderProyecto' => 'required|string|min:8|max:255',
+            'puestoLiderProyecto' => 'required|string|min:8|max:255',
+            'nombreAdministradorProyecto' => 'required|string|min:8|max:255',
+            'puestoAdministradorProyecto' => 'required|string|min:8|max:255',
+            'nombreDesarrollador' => 'required|string|min:5|max:255',
+            'puestoDesarrollador' => 'required|string|min:5|max:255',
+            'areaUsuaria' => 'required|string|min:3|max:255',
+            'puestoUsuario' => 'required|string|min:5|max:255',
         ]);
 
         $nombreLiderProyecto = $request->input('nombreLiderProyecto');
@@ -68,7 +68,7 @@ class RolSistemasController extends Controller
 
         $rolSistemas->save();
 
-        return redirect()->back()->with('Mensaje', 'Genial xd');
+        return redirect()->back()->with(['success_rol_registrado' => '!Roles registrados exitosamente!']);
     }
 
     /**
