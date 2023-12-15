@@ -114,23 +114,29 @@ class SistemaController extends Controller
      */
     public function show(Sistema $sistema)
     {
-        $nombresArchivos = [
+        $nombreArchivo = [
             'F1 - Acta de constitución del proyecto',
             'F2 - Acta de aceptación de entregables',
             'F3 - Acta de cierre de proyecto',
             'L1 - Cédula de identificación de proyectos',
             'L2 - Formato de minutas',
-            'L3 - Plan de pruebas',
-            'L4 - Matriz de pruebas',
-            'L5 - Solicitud de cambios',
-            'L6 - Asignación usuario perfil',
-            'L7 - Reporte de avance',
-            'L8 - Análisis de requerimientos',
-            'L9 - Especificación de requerimientos',
-            'L10 - Plantilla elaboración de manuales',
+            'L3 - Plantilla CRONOGRAMA',
+            'L4 - Asignación de requerimientos',
+            'L5 - Análisis de requerimientos',
+            'L6 - Especificación de requerimientos',
+            'L7 - Reglas de validación',
+            'L8 - Modelado del proceso',
+            'L9 - Plan de pruebas',
+            'L10 - Matriz de pruebas',
+            'L11 - Solicitud de cambios',
+            'L11BIS - Solicitud de cambios',
+            'L12 - Reporte de avance',
+            'L13 - Matriz de trazabilidad',
+            'L14 - Plantilla elaboración de Manuales',
+            'L15 - Transferencia de conocimientos',
         ];
         //
-        return view('sistema.show', compact('sistema', 'nombresArchivos'));
+        return view('sistema.show', compact('sistema', 'nombreArchivo'));
     }
 
     /**
@@ -138,22 +144,28 @@ class SistemaController extends Controller
      */
     public function edit(Sistema $sistema)
     {
-        $nombresArchivos = [
+        $nombreArchivo = [
             'F1 - Acta de constitución del proyecto',
             'F2 - Acta de aceptación de entregables',
             'F3 - Acta de cierre de proyecto',
             'L1 - Cédula de identificación de proyectos',
             'L2 - Formato de minutas',
-            'L3 - Plan de pruebas',
-            'L4 - Matriz de pruebas',
-            'L5 - Solicitud de cambios',
-            'L6 - Asignación usuario perfil',
-            'L7 - Reporte de avance',
-            'L8 - Análisis de requerimientos',
-            'L9 - Especificación de requerimientos',
-            'L10 - Plantilla elaboración de manuales',
+            'L3 - Plantilla CRONOGRAMA',
+            'L4 - Asignación de requerimientos',
+            'L5 - Análisis de requerimientos',
+            'L6 - Especificación de requerimientos',
+            'L7 - Reglas de validación',
+            'L8 - Modelado del proceso',
+            'L9 - Plan de pruebas',
+            'L10 - Matriz de pruebas',
+            'L11 - Solicitud de cambios',
+            'L11BIS - Solicitud de cambios',
+            'L12 - Reporte de avance',
+            'L13 - Matriz de trazabilidad',
+            'L14 - Plantilla elaboración de Manuales',
+            'L15 - Transferencia de conocimientos',
         ];
-        return view('sistema.edit', compact('sistema', 'nombresArchivos'));
+        return view('sistema.edit', compact('sistema', 'nombreArchivo'));
     }
 
     /**
@@ -176,11 +188,10 @@ class SistemaController extends Controller
         return redirect()->route('sistema.index');
     }
 
-    /**public function guardarRespuesta(Request $request, $id)
+    /* public function guardarRespuesta(Request $request, $id)
     {
-        
         return redirect()->back()->with('success2', 'El archivo se ha almacenado correctamente.');
-    }**/
+    } */
 
     public function graficaDocumentacionCompleta(Sistema $sistema)
     {

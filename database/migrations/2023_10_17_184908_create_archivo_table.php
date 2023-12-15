@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('archivo', function (Blueprint $table) {
+        Schema::create('archivos', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->text('nombreArchivo');
+            $table->string('nombreArchivo');
 
             //Creación del campo que será la FK
             $table->unsignedBigInteger('idSistema');
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('archivo');
+        Schema::dropIfExists('archivos');
     }
 };

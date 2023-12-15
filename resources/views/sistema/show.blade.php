@@ -20,7 +20,12 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="card-body">
-                                                    {!! Form::open(['route' => ['rolsistemas.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
+                                                    {!! Form::open([
+                                                        'route' => ['rolsistemas.store', 'id' => $sistema->id],
+                                                        'method' => 'POST',
+                                                        'class' => 'form-validation',
+                                                        'id' => 'rolesForm',
+                                                    ]) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
@@ -146,12 +151,6 @@
                                                         </div>
                                                     </div>
                                                     {!! Form::close() !!}
-
-                                                    <!-- Script de SweetAlert -->
-                                                    @if (session('script'))
-                                                        {!! session('script') !!}
-                                                    @endif
-
                                                 </div>
                                             </div>
                                         </div>
@@ -164,7 +163,12 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="card-body">
-                                                    {!! Form::open(['route' => ['informacion.store', 'id' => $sistema->id], 'method' => 'POST', 'id' => 'informacionForm']) !!}
+                                                    {!! Form::open([
+                                                        'route' => ['informacion.store', 'id' => $sistema->id],
+                                                        'method' => 'POST',
+                                                        'class' => 'form-validation',
+                                                        'id' => 'informacionForm',
+                                                    ]) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
@@ -461,12 +465,6 @@
                                                         </div>
                                                     </div>
                                                     {!! Form::close() !!}
-
-                                                    <!-- Script de SweetAlert -->
-                                                    @if (session('script'))
-                                                        {!! session('script') !!}
-                                                    @endif
-
                                                 </div>
                                             </div>
                                         </div>
@@ -480,39 +478,57 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="card-body">
-                                                    @if ($errors->any())
-                                                        <div class="alert alert-dark alert-dismissible fade show"
-                                                            role="alert">
-                                                            <strong>¡Revise los campos!</strong>
-                                                            @foreach ($errors->all() as $error)
-                                                                <span
-                                                                    class="badge badge-danger">{{ $error }}</span>
-                                                            @endforeach
-                                                            <button type="button" class="close" data-dismiss="alert"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                    @endif
-
-                                                    {!! Form::open(['route' => ['caracteristica.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
+                                                    {!! Form::open([
+                                                        'route' => ['caracteristica.store', 'id' => $sistema->id],
+                                                        'method' => 'POST',
+                                                        'class' => 'form-validation',
+                                                        'id' => 'caracteristicasForm',
+                                                    ]) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Sistema Operativo*:</label>
-                                                                {!! Form::text('sistemaOperativo', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::text('sistemaOperativo', old('sistemaOperativo'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese un sistema',
+                                                                ]) !!}
+                                                                @error('sistemaOperativo')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Control de Versiones*:</label>
-                                                                {!! Form::text('controlVersiones', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'controlVersiones',
+                                                                    [
+                                                                        'Git' => 'Git',
+                                                                        'Otro' => 'Otro',
+                                                                        'No Aplica' => 'No Aplica',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                        'Apache Subversión' => 'Apache Subversión',
+                                                                    ],
+                                                                    old('controlVersiones'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione un control'],
+                                                                ) !!}
+                                                                @error('controlVersiones')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Versión del sistema*:</label>
-                                                                {!! Form::text('versionSistema', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::text('versionSistema', old('versionSistema'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese la versión',
+                                                                ]) !!}
+                                                                @error('versionSistema')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -521,20 +537,41 @@
                                                             <div class="form-group">
                                                                 <label for="">Lenguaje de programación del
                                                                     sistema*:</label>
-                                                                {!! Form::text('lenguajeProgramacion', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::text('lenguajeProgramacion', old('lenguajeProgramacion'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese un lenguaje',
+                                                                ]) !!}
+                                                                @error('lenguajeProgramacion')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Interacción con otro lenguaje de
-                                                                    programación*:</label>
-                                                                {!! Form::text('otroLenguajeProgramacion', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                <label for="">Interacción con otro
+                                                                    lenguaje*:</label>
+                                                                {!! Form::text('otroLenguajeProgramacion', old('otroLenguajeProgramacion'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Especifique un lenguaje',
+                                                                ]) !!}
+                                                                @error('otroLenguajeProgramacion')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Frameworks*:</label>
-                                                                {!! Form::text('frameworks', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::text('frameworks', old('frameworks'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese un framework',
+                                                                ]) !!}
+                                                                @error('frameworks')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -542,20 +579,48 @@
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Despliegue*:</label>
-                                                                {!! Form::text('despliegue', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'despliegue',
+                                                                    [
+                                                                        'Otro' => 'Otro',
+                                                                        'Nginx' => 'Nginx',
+                                                                        'Apache' => 'Apache',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                        'Microsoft Windows' => 'Microsoft Windows',
+                                                                    ],
+                                                                    old('despliegue'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('despliegue')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Si es otro servidor web,
                                                                     especificarlo*:</label>
-                                                                {!! Form::text('otroServidorWeb', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::text('otroServidorWeb', old('otroServidorWeb'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese el servidor',
+                                                                ]) !!}
+                                                                @error('otroServidorWeb')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Manejador de base de datos*:</label>
-                                                                {!! Form::text('manejadorBD', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::text('manejadorBD', old('manejadorBD'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese el manejador',
+                                                                ]) !!}
+                                                                @error('manejadorBD')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -563,21 +628,48 @@
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Nombre de la base de datos*:</label>
-                                                                {!! Form::text('nombreBD', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::text('nombreBD', old('nombreBD'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese el nombre',
+                                                                ]) !!}
+                                                                @error('nombreBD')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Plataforma de desarrollo de
                                                                     software*:</label>
-                                                                {!! Form::text('plataformaDesarrollo', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::text('plataformaDesarrollo', old('plataformaDesarrollo'), [
+                                                                    'class' => 'form-control',
+                                                                    'required' => 'required',
+                                                                    'placeholder' => 'Ingrese la plataforma',
+                                                                ]) !!}
+                                                                @error('plataformaDesarrollo')
+                                                                    <small style="color: red;">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">¿El sistema hace uso de una
                                                                     API?*:</label>
-                                                                {!! Form::text('usoAPI', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'usoAPI',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'No Aplica' => 'No Aplica',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('usoAPI'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('usoAPI')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -605,33 +697,32 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="card-body">
-                                                    @if ($errors->any())
-                                                        <div class="alert alert-dark alert-dismissible fade show"
-                                                            role="alert">
-                                                            <strong>¡Revise los campos!</strong>
-                                                            @foreach ($errors->all() as $error)
-                                                                <span
-                                                                    class="badge badge-danger">{{ $error }}</span>
-                                                            @endforeach
-                                                            <button type="button" class="close" data-dismiss="alert"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                    @endif
-
                                                     {!! Form::open([
-                                                        'url' => route('documento.store', ['id' => $sistema->id]),
+                                                        'route' => ['documento.store', $sistema->id],
                                                         'method' => 'POST',
                                                         'enctype' => 'multipart/form-data',
+                                                        'class' => 'form-validation',
                                                     ]) !!}
+
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
                                                             <div class="form-group">
                                                                 <label for="">¿El sistema se encuentra documentado
                                                                     con base en la normatividad de la Adminstración Pública
                                                                     General?*:</label>
-                                                                {!! Form::text('documentado', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'documentado',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('documentado'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('documentado')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -640,21 +731,57 @@
                                                             <div class="form-group">
                                                                 <label for="">¿El sistema tiene un manual de
                                                                     usuario?*:</label>
-                                                                {!! Form::text('manualUsuario', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'manualUsuario',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('manualUsuario'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('manualUsuario')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">¿El sistema tiene un manual
                                                                     técnico?*:</label>
-                                                                {!! Form::text('manualTecnico', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'manualTecnico',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('manualTecnico'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('manualTecnico')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">¿El sistema tiene un manual de
+                                                                <label for="">¿Existe un manual de
                                                                     mantenimiento?*:</label>
-                                                                {!! Form::text('manualMantenimiento', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'manualMantenimiento',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('manualMantenimiento'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('manualMantenimiento')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -663,7 +790,21 @@
                                                             <div class="form-group">
                                                                 <label for="">¿El sistema cuenta con una política
                                                                     de privacidad?*:</label>
-                                                                {!! Form::text('politicaPrivacidad', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'politicaPrivacidad',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                        'Campo Vacio' => 'Campo Vacio',
+                                                                        'Aviso de Privacidad' => 'Aviso de Privacidad',
+                                                                    ],
+                                                                    old('politicaPrivacidad'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('politicaPrivacidad')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -671,12 +812,12 @@
                                                     <h4>Subir Documentación del Sistema.</h4>
 
                                                     <div class="row">
-                                                        @for ($i = 0; $i < count($nombresArchivos); $i++)
+                                                        @for ($i = 0; $i < count($nombreArchivo); $i++)
                                                             <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                                 <div class="form-group">
                                                                     <label
-                                                                        for="archivo{{ $i }}">{{ $nombresArchivos[$i] }}</label>
-                                                                    {!! Form::file('nombreArchivo[]', ['class' => 'form-control', 'multiple' => true, 'id' => "archivo{$i}"]) !!}
+                                                                        for="nombreArchivo{{ $i }}">{{ $nombreArchivo[$i] }}</label>
+                                                                    {!! Form::file('nombreArchivo[]', ['class' => 'form-control', 'multiple' => true, 'id' => "nombreArchivo{$i}"]) !!}
 
                                                                 </div>
                                                             </div>
@@ -706,28 +847,30 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="card-body">
-                                                    @if ($errors->any())
-                                                        <div class="alert alert-dark alert-dismissible fade show"
-                                                            role="alert">
-                                                            <strong>¡Revise los campos!</strong>
-                                                            @foreach ($errors->all() as $error)
-                                                                <span
-                                                                    class="badge badge-danger">{{ $error }}</span>
-                                                            @endforeach
-                                                            <button type="button" class="close" data-dismiss="alert"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                    @endif
-
-                                                    {!! Form::open(['route' => ['seguridad.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
+                                                    {!! Form::open([
+                                                        'route' => ['seguridad.store', 'id' => $sistema->id],
+                                                        'method' => 'POST',
+                                                        'class' => 'form-validation',
+                                                        'id' => 'seguridadForm',
+                                                    ]) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
                                                             <div class="form-group">
                                                                 <label for="">¿Se han determinado roles y
                                                                     responsabilidades?*:</label>
-                                                                {!! Form::text('determinarRoles', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'determinarRoles',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('determinarRoles'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('determinarRoles')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
@@ -737,7 +880,20 @@
                                                                     seguro de acuerdo a las políticas de seguridad
                                                                     de la información de
                                                                     la CONDUSEF?*:</label>
-                                                                {!! Form::text('procesoBorrado', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'procesoBorrado',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'Campo Vacio' => 'Campo Vacio',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('procesoBorrado'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('procesoBorrado')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
@@ -747,7 +903,19 @@
                                                                     acuerdo a las políticas de seguridad de la
                                                                     información de la
                                                                     CONDUSEF?*:</label>
-                                                                {!! Form::text('controlAcceso', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'controlAcceso',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('controlAcceso'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('controlAcceso')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
@@ -758,14 +926,39 @@
                                                                     materia junto con las
                                                                     sanciones que se ejercerán en caso de
                                                                     incumplimiento?*:</label>
-                                                                {!! Form::text('conocimientoPrincipios', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'conocimientoPrincipios',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('conocimientoPrincipios'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('conocimientoPrincipios')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
                                                             <div class="form-group">
                                                                 <label for="">Protocolo de seguridad de la
                                                                     información*:</label>
-                                                                {!! Form::text('protocoloSeguridad', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'protocoloSeguridad',
+                                                                    [
+                                                                        'Otro' => 'Otro',
+                                                                        'HTTPS' => 'HTTPS',
+                                                                        'No Aplica' => 'No Aplica',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('protocoloSeguridad'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('protocoloSeguridad')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1031,57 +1224,97 @@
         </script>
     @endif
 
-    @if (session('success_rol_registrado'))
+    @if (session('success_documento_creado'))
         <script>
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: '¡Roles registrados exitosamente!',
+                title: '¡Documentos registrados exitosamente!',
                 showConfirmButton: false,
                 timer: 3500
             });
         </script>
     @endif
 
-    @if (session('success_informacion_registrado'))
-        <script>
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: '¡Información registrada exitosamente!',
-                showConfirmButton: false,
-                timer: 3500
-            });
-        </script>
-    @endif
 
-    <!-- Script de AJAX para manejar el envío del formulario sin recargar la página -->
     <script>
-        $(document).ready(function() {
-            $('#informacionForm').submit(function(e) {
+        function setupFormValidation(formId, successCallback) {
+            $('#' + formId).submit(function(e) {
                 e.preventDefault();
 
-                // Realiza la petición AJAX
                 $.ajax({
                     type: 'POST',
                     url: $(this).attr('action'),
                     data: $(this).serialize(),
                     success: function(response) {
-                        // Muestra el mensaje de éxito después de enviar el formulario
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: '¡Información registrada exitosamente!',
-                            showConfirmButton: false,
-                            timer: 3500
-                        });
+                        clearValidationErrors(formId);
+                        successCallback(response.success);
                     },
-                    error: function(error) {
-                        console.error('Error en la petición AJAX:', error);
+                    error: function(xhr) {
+                        if (xhr.status === 422) {
+                            handleValidationErrors(formId, xhr.responseJSON.errors);
+                        } else {
+                            console.error('Error en la petición AJAX:', xhr);
+                        }
                     }
                 });
             });
+
+            $('#' + formId + ' input').on('input', function() {
+                removeErrorMessages(formId, $(this).attr('name'));
+            });
+
+            function clearValidationErrors(formId) {
+                $('#' + formId + ' small').remove();
+            }
+
+            function handleValidationErrors(formId, errors) {
+                $.each(errors, function(key, value) {
+                    removeErrorMessages(formId, key);
+                    $('#' + formId + ' [name="' + key + '"]').after('<small style="color: red;">' + value[0] +
+                        '</small>');
+                });
+            }
+
+            function removeErrorMessages(formId, fieldName) {
+                $('#' + formId + ' [name="' + fieldName + '"]').siblings('small').remove();
+            }
+        }
+
+        function showSuccessMessage(message) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: message,
+                showConfirmButton: false,
+                timer: 3500
+            });
+        }
+
+        // Uso para el primer formulario
+        setupFormValidation('rolesForm', function(successMessage) {
+            showSuccessMessage(successMessage);
+        });
+
+        // Uso para otros formularios
+        setupFormValidation('informacionForm', function(successMessage) {
+            // Función específica para el otro formulario
+            showSuccessMessage(successMessage);
+        });
+
+        setupFormValidation('caracteristicasForm', function(successMessage) {
+            // Función específica para el otro formulario
+            showSuccessMessage(successMessage);
+        });
+
+        setupFormValidation('documentacionForm', function(successMessage) {
+            // Función específica para el otro formulario
+            showSuccessMessage(successMessage);
+        });
+
+        setupFormValidation('seguridadForm', function(successMessage) {
+            // Función específica para el otro formulario
+            showSuccessMessage(successMessage);
         });
     </script>
-
 @stop

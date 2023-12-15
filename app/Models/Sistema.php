@@ -40,7 +40,11 @@ class Sistema extends Model
     {
         return $this->hasOne(Documento::class, 'idSistema');
     }
-
+    public function archivos()
+    {
+        return $this->hasMany(Archivo::class, 'idSistema');
+    }
+    
     public function seguridad()
     {
         return $this->hasOne(Seguridad::class, 'idSistema');

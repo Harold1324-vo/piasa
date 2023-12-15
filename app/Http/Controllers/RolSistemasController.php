@@ -6,6 +6,7 @@ use App\Models\RolSistema;
 use App\Models\RolSistemas;
 use App\Models\Sistema;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RolSistemasController extends Controller
 {
@@ -33,7 +34,7 @@ class RolSistemasController extends Controller
         $sistema = Sistema::findOrFail($id);
 
         //
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'nombreLiderProyecto' => 'required|string|min:8|max:255',
             'puestoLiderProyecto' => 'required|string|min:8|max:255',
             'nombreAdministradorProyecto' => 'required|string|min:8|max:255',
@@ -43,6 +44,10 @@ class RolSistemasController extends Controller
             'areaUsuaria' => 'required|string|min:3|max:255',
             'puestoUsuario' => 'required|string|min:5|max:255',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
 
         $nombreLiderProyecto = $request->input('nombreLiderProyecto');
         $puestoLiderProyecto = $request->input('puestoLiderProyecto');
@@ -68,7 +73,7 @@ class RolSistemasController extends Controller
 
         $rolSistemas->save();
 
-        return redirect()->back()->with(['success_rol_registrado' => '!Roles registrados exitosamente!']);
+        return response()->json(['success' => '¡Roles registrados exitosamente!']);
     }
 
     /**

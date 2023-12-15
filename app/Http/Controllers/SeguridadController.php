@@ -56,7 +56,7 @@ class SeguridadController extends Controller
         
         $seguridad->save();
 
-        return redirect()->back()->with('Mensaje', 'Genial xd');
+        return response()->json(['success' => '¡Seguridad registrada exitosamente!']);
     }
 
     /**

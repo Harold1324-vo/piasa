@@ -32,17 +32,17 @@ class CaracteristicaController extends Controller
         $sistema = Sistema::findOrFail($id);
 
         $this->validate($request, [
-            'sistemaOperativo' => 'required',
-            'controlVersiones' => 'required',
-            'versionSistema' => 'required',
-            'lenguajeProgramacion' => 'required',
-            'otroLenguajeProgramacion' => 'required',
-            'frameworks' => 'required',
-            'despliegue' => 'required',
-            'otroServidorWeb' => 'required',
-            'manejadorBD' => 'required',
-            'nombreBD' => 'required',
-            'plataformaDesarrollo' => 'required',
+            'sistemaOperativo' => 'required|string|min:2|max:255',
+            'controlVersiones' => 'required|string',
+            'versionSistema' => 'required|string',
+            'lenguajeProgramacion' => 'required|string',
+            'otroLenguajeProgramacion' => 'required|string|min:2|max:255',
+            'frameworks' => 'required|string|min:3|max:255',
+            'despliegue' => 'required|string',
+            'otroServidorWeb' => 'required|string|min:2|max:255',
+            'manejadorBD' => 'required|string|min:3|max:255',
+            'nombreBD' => 'required|string|max:255',
+            'plataformaDesarrollo' => 'required|string|max:255',
             'usoAPI' => 'required',
         ]);
 
@@ -61,23 +61,23 @@ class CaracteristicaController extends Controller
 
         $caracteristica = new Caracteristica();
 
-        $caracteristica->sistemaOperativo=$sistemaOperativo;
-        $caracteristica->controlVersiones=$controlVersiones;
-        $caracteristica->versionSistema=$versionSistema;
-        $caracteristica->lenguajeProgramacion=$lenguajeProgramacion;
-        $caracteristica->otroLenguajeProgramacion=$otroLenguajeProgramacion;
-        $caracteristica->frameworks=$frameworks;
-        $caracteristica->despliegue=$despliegue;
-        $caracteristica->otroServidorWeb=$otroServidorWeb;
-        $caracteristica->manejadorBD=$manejadorBD;
-        $caracteristica->nombreBD=$nombreBD;
-        $caracteristica->plataformaDesarrollo=$plataformaDesarrollo;
-        $caracteristica->usoAPI=$usoAPI;
+        $caracteristica->sistemaOperativo = $sistemaOperativo;
+        $caracteristica->controlVersiones = $controlVersiones;
+        $caracteristica->versionSistema = $versionSistema;
+        $caracteristica->lenguajeProgramacion = $lenguajeProgramacion;
+        $caracteristica->otroLenguajeProgramacion = $otroLenguajeProgramacion;
+        $caracteristica->frameworks = $frameworks;
+        $caracteristica->despliegue = $despliegue;
+        $caracteristica->otroServidorWeb = $otroServidorWeb;
+        $caracteristica->manejadorBD = $manejadorBD;
+        $caracteristica->nombreBD = $nombreBD;
+        $caracteristica->plataformaDesarrollo = $plataformaDesarrollo;
+        $caracteristica->usoAPI = $usoAPI;
         $caracteristica->idSistema = $sistema->id;
-        
+
         $caracteristica->save();
 
-        return redirect()->back()->with('Mensaje', 'Genial xd');
+        return response()->json(['success' => '¡Características registradas exitosamente!']);
     }
 
     /**
@@ -108,19 +108,114 @@ class CaracteristicaController extends Controller
         // Busca el sistema
         $sistema = Sistema::findOrFail($id);
 
+        $campos2 = [
+            [
+                'label' => 'Sistema Operativo',
+                'nombre' => 'sistemaOperativo',
+                'tipo' => 'text',
+                'placeholder' => 'Ingrese un sistema',
+            ],
+            [
+                'label' => 'Control de Versiones',
+                'nombre' => 'controlVersiones',
+                'tipo' => 'select',
+                'opciones' => [
+                    'Git' => 'Git',
+                    'Otro' => 'Otro',
+                    'No Aplica' => 'No Aplica',
+                    'En Desarrollo' => 'En Desarrollo',
+                    'Apache Subversión' => 'Apache Subversión',
+                ],
+                'placeholder' => 'Seleccione un control',
+            ],
+            [
+                'label' => 'Versión del sistema',
+                'nombre' => 'versionSistema',
+                'tipo' => 'text',
+                'placeholder' => 'Ingrese la versión',
+            ],
+            [
+                'label' => 'Lenguaje de programación del sistema',
+                'nombre' => 'lenguajeProgramacion',
+                'tipo' => 'text',
+                'placeholder' => 'Ingrese un lenguaje',
+            ],
+            [
+                'label' => 'Interacción con otro lenguaje',
+                'nombre' => 'otroLenguajeProgramacion',
+                'tipo' => 'text',
+                'placeholder' => 'Especifique un lenguaje',
+            ],
+            [
+                'label' => 'Frameworks',
+                'nombre' => 'frameworks',
+                'tipo' => 'text',
+                'placeholder' => 'Ingrese un framework',
+            ],
+            [
+                'label' => 'Despliegue',
+                'nombre' => 'despliegue',
+                'tipo' => 'select',
+                'opciones' => [
+                    'Otro' => 'Otro',
+                    'Nginx' => 'Nginx',
+                    'Apache' => 'Apache',
+                    'En Desarrollo' => 'En Desarrollo',
+                    'Microsoft Windows' => 'Microsoft Windows',
+                ],
+                'placeholder' => 'Seleccione una opción',
+            ],
+            [
+                'label' => 'Si es otro servidor web, especificarlo',
+                'nombre' => 'otroServidorWeb',
+                'tipo' => 'text',
+                'placeholder' => 'Ingrese el servidor',
+            ],
+            [
+                'label' => 'Manejador de base de datos',
+                'nombre' => 'manejadorBD',
+                'tipo' => 'text',
+                'placeholder' => 'Ingrese el manejador',
+            ],
+            [
+                'label' => 'Nombre de la base de datos',
+                'nombre' => 'nombreBD',
+                'tipo' => 'text',
+                'placeholder' => 'Ingrese el nombre',
+            ],
+            [
+                'label' => 'Plataforma de desarrollo de software',
+                'nombre' => 'plataformaDesarrollo',
+                'tipo' => 'text',
+                'placeholder' => 'Ingrese la plataforma',
+            ],
+            [
+                'label' => 'El sistema hace uso de una API?',
+                'nombre' => 'usoAPI',
+                'tipo' => 'select',
+                'opciones' => [
+                    'Si' => 'Si',
+                    'No' => 'No',
+                    'No Aplica' => 'No Aplica',
+                    'En Desarrollo' => 'En Desarrollo',
+                ],
+                'placeholder' => 'Seleccione una opción',
+            ],
+        ];
+
         // Valida los datos del formulario
         $request->validate([
-            'sistemaOperativo' => 'required',
-            'controlVersiones' => 'required',
-            'versionSistema' => 'required',
-            'lenguajeProgramacion' => 'required',
-            'otroLenguajeProgramacion' => 'required',
-            'frameworks' => 'required',
-            'despliegue' => 'required',
-            'otroServidorWeb' => 'required',
-            'manejadorBD' => 'required',
-            'nombreBD' => 'required',
-            'plataformaDesarrollo' => 'required',
+            'sistemaOperativo' => 'required|string|min:2|max:255',
+            'controlVersiones' => 'required|string',
+            'versionSistema' => 'required|string',
+            'lenguajeProgramacion' => 'required|string',
+            'otroLenguajeProgramacion' => 'required|string|min:2|max:255',
+            'frameworks' => 'required|string|min:3|max:255',
+            'despliegue' => 'required|string',
+            'otroServidorWeb' => 'required|string|min:2|max:255',
+            'manejadorBD' => 'required|string|min:3|max:255',
+            'nombreBD' => 'required|string|max:255',
+            'plataformaDesarrollo' => 'required|string|max:255',
             'usoAPI' => 'required',
         ]);
 
@@ -142,7 +237,9 @@ class CaracteristicaController extends Controller
 
         $caracteristica->save();
 
-        return redirect()->back()->with('Mensaje', 'Datos actualizados correctamente');
+
+        return redirect()->back()->with(['success_caracteristica_registrado' => '¡Características registradas exitosamente!', 'campos' => $campos2]);        
+
     }
 
     /**

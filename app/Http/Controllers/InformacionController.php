@@ -45,8 +45,8 @@ class InformacionController extends Controller
             'faseActual' => 'required',
             'legado' => 'required',
             'modeloOperacion' => 'required',
-            'interaccionDependencias' => 'required',
-            'interaccionOtrasAreas' => 'required',
+            'interaccionDependencias' => 'required|string|max:255',
+            'interaccionOtrasAreas' => 'required|string|max:255',
             'migrado' => 'required',
         ]);
 
@@ -87,7 +87,7 @@ class InformacionController extends Controller
         
         $informacion->save();
 
-        return redirect()->back()->with(['success_informacion_registrado' => '¡Información registrada exitosamente!']);
+        return response()->json(['success' => '¡Información registrada exitosamente!']);
     }
 
     /**

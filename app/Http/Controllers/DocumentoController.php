@@ -61,8 +61,6 @@ class DocumentoController extends Controller
         // Obtener el sistema asociada al ID
         $sistema = Sistema::findOrFail($id);
 
-      
-
         // Validar y guardar los archivos adjuntos
         if ($request->hasFile('nombreArchivo')) {
             // Obtener los archivos adjuntos del formulario
@@ -87,11 +85,10 @@ class DocumentoController extends Controller
             $archivo->nombreArchivo = implode('|', $archivoPaths); // Convertir la lista de paths en un string separado por '|'
             $archivo->idSistema = $sistema->id;
             $archivo->save();
-
-            
         }
 
-        return redirect()->back()->with('Mensaje', 'Genial xd');
+        return redirect()->back()->with('success_documento_creado', '¡Documentos registrados exitosamente!');
+
     }
 
     /**
