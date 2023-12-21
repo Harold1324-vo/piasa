@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('interaccionDependencias', 255);
             $table->string('interaccionOtrasAreas', 255);
             $table->string('migrado', 50);
+            $table->string('consecutivo', 50)->nullable();
 
             //Creación del campo que será la FK
             $table->unsignedBigInteger('idSistema');

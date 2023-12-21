@@ -65,7 +65,7 @@ class DatosPersonalController extends Controller
         
         $datosPersonal->save();
 
-        return redirect()->back()->with('Mensaje', 'Genial xd');
+        return response()->json(['success' => '¡Datos Personales registrados exitosamente!']);
     }
 
     /**

@@ -93,15 +93,6 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                    <div class="form-group">
-                                        <label for="">Consecutivo*: </label>
-                                        {!! Form::text('consecutivo', old(''), ['class' => 'form-control', 'required' => 'required']) !!}
-                                        @error('consecutivo')
-                                            <small style="color: red;">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
                             </div>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <div style="flex-grow: 1;"> 

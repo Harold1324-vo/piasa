@@ -15,7 +15,7 @@ return new class extends Migration
 
         Schema::create('archivos', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('nombreArchivo');
+            $table->text('nombreArchivo');
 
             //Creación del campo que será la FK
             $table->unsignedBigInteger('idSistema');

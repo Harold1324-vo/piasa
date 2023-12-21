@@ -34,11 +34,11 @@ class MantenimientoController extends Controller
         $this->validate($request, [
             'requiereMantenimiento' => 'required',
             'tipoMantenimiento' => 'required',
-            'descripcionMantenimiento' => 'required',
+            'descripcionMantenimiento' => 'required|string|min:4|max:255',
             'periocidadMantenimiento' => 'required',
-            'areaResponsable' => 'required',
-            'nombreTecnicoResponsable' => 'required',
-            'nombreCoordinador' => 'required',
+            'areaResponsable' => 'required|string|min:3|max:255',
+            'nombreTecnicoResponsable' => 'required|string|min:6|max:255',
+            'nombreCoordinador' => 'required|string|min:6|max:255',
         ]);
 
         $requiereMantenimiento = $request->input('requiereMantenimiento');
@@ -62,7 +62,7 @@ class MantenimientoController extends Controller
         
         $mantenimiento->save();
 
-        return redirect()->back()->with('Mensaje', 'Genial xd');
+        return response()->json(['success' => '¡Mantenimiento registrado exitosamente!']);
     }
 
     /**

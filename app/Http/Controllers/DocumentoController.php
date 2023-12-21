@@ -87,7 +87,7 @@ class DocumentoController extends Controller
             $archivo->save();
         }
 
-        return redirect()->back()->with('success_documento_creado', '¡Documentos registrados exitosamente!');
+        return redirect()->route('sistema.index')->with(['success_documento_registrado' => '¡Documento y Sistema registrado exitosamente!']);
 
     }
 

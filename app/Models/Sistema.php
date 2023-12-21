@@ -18,7 +18,6 @@ class Sistema extends Model
         'areaDesarrolladora',
         'estadoActivo',
         'url',
-        'consecutivo',
     ];
 
     public function rolesSistemas()

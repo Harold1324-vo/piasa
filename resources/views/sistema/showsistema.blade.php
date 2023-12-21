@@ -54,6 +54,8 @@
                                         <h6 class="text-danger">{{ 'INACTIVO' }}</h6>
                                     @endif
                                     <a href="{{ $informacion->sistema->url }}" target="_blank">{{ $informacion->sistema->url }}</a>
+                                    <br>
+                                    <a href="{{ $informacion->consecutivo }}" target="_blank">{{ $informacion->consecutivo }}</a>
                                 </div>
                                 <div class="card-body">
                                     <a href="{{ route('grafica.graficaDocumentacionCompleta', $informacion->sistema->id) }}">Ver gráficas</a>

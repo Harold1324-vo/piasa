@@ -20,20 +20,6 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="card-body">
-                                                    @if ($errors->any())
-                                                        <div class="alert alert-dark alert-dismissible fade show"
-                                                            role="alert">
-                                                            <strong>¡Revise los campos!</strong>
-                                                            @foreach ($errors->all() as $error)
-                                                                <span class="badge badge-danger">{{ $error }}</span>
-                                                            @endforeach
-                                                            <button type="button" class="close" data-dismiss="alert"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                    @endif
-
                                                     {!! Form::model($sistema, ['method' => 'PUT', 'route' => ['sistema.update', $sistema->id]]) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
@@ -547,12 +533,12 @@
                                                     <h4>Subir Documentación del Sistema.</h4>
 
                                                     <div class="row">
-                                                        @for ($i = 0; $i < count($nombresArchivos); $i++)
+                                                        @for ($i = 0; $i < count($nombreArchivo); $i++)
                                                             <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                                 <div class="form-group">
                                                                     <label
-                                                                        for="archivo{{ $i }}">{{ $nombresArchivos[$i] }}</label>
-                                                                    {!! Form::file('nombreArchivo[]', ['class' => 'form-control', 'multiple' => true, 'id' => "archivo{$i}"]) !!}
+                                                                        for="nombreArchivo{{ $i }}">{{ $nombreArchivo[$i] }}</label>
+                                                                    {!! Form::file('nombreArchivo[]', ['class' => 'form-control', 'multiple' => true, 'id' => "nombreArchivo{$i}"]) !!}
 
                                                                 </div>
                                                             </div>

@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('areaDesarrolladora', 50);
             $table->string('estadoActivo', 20);
             $table->string('url', 200);
-            $table->string('consecutivo', 50);
 
             //Creación del campo que será la FK
             $table->unsignedBigInteger('idUsuario');

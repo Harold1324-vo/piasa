@@ -112,7 +112,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
+                                                        <div class="col-xs-12 col-sm-6 col-md-6 col-xl-6">
                                                             <div class="form-group">
                                                                 <label for="">Área usuaria*:</label>
                                                                 {!! Form::text('areaUsuaria', old('areaUsuaria'), [
@@ -125,7 +125,7 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
+                                                        <div class="col-xs-12 col-sm-6 col-md-6 col-xl-6">
                                                             <div class="form-group">
                                                                 <label for="">Puesto del usuario*:</label>
                                                                 {!! Form::text('puestoUsuario', old('puestoUsuario'), [
@@ -692,156 +692,6 @@
                                 </div>
 
                                 <div class="carousel-item">
-                                    <h2 class="page__heading text-center" style="padding: 1%;">Documentación.</h2>
-                                    <div class="section-body">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="card-body">
-                                                    {!! Form::open([
-                                                        'route' => ['documento.store', $sistema->id],
-                                                        'method' => 'POST',
-                                                        'enctype' => 'multipart/form-data',
-                                                        'class' => 'form-validation',
-                                                    ]) !!}
-
-                                                    <div class="row">
-                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
-                                                            <div class="form-group">
-                                                                <label for="">¿El sistema se encuentra documentado
-                                                                    con base en la normatividad de la Adminstración Pública
-                                                                    General?*:</label>
-                                                                {!! Form::select(
-                                                                    'documentado',
-                                                                    [
-                                                                        'Si' => 'Si',
-                                                                        'No' => 'No',
-                                                                        'En Desarrollo' => 'En Desarrollo',
-                                                                    ],
-                                                                    old('documentado'),
-                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
-                                                                ) !!}
-                                                                @error('documentado')
-                                                                    <small class="text-danger">{{ $message }}</small>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                            <div class="form-group">
-                                                                <label for="">¿El sistema tiene un manual de
-                                                                    usuario?*:</label>
-                                                                {!! Form::select(
-                                                                    'manualUsuario',
-                                                                    [
-                                                                        'Si' => 'Si',
-                                                                        'No' => 'No',
-                                                                        'En Desarrollo' => 'En Desarrollo',
-                                                                    ],
-                                                                    old('manualUsuario'),
-                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
-                                                                ) !!}
-                                                                @error('manualUsuario')
-                                                                    <small class="text-danger">{{ $message }}</small>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                            <div class="form-group">
-                                                                <label for="">¿El sistema tiene un manual
-                                                                    técnico?*:</label>
-                                                                {!! Form::select(
-                                                                    'manualTecnico',
-                                                                    [
-                                                                        'Si' => 'Si',
-                                                                        'No' => 'No',
-                                                                        'En Desarrollo' => 'En Desarrollo',
-                                                                    ],
-                                                                    old('manualTecnico'),
-                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
-                                                                ) !!}
-                                                                @error('manualTecnico')
-                                                                    <small class="text-danger">{{ $message }}</small>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                            <div class="form-group">
-                                                                <label for="">¿Existe un manual de
-                                                                    mantenimiento?*:</label>
-                                                                {!! Form::select(
-                                                                    'manualMantenimiento',
-                                                                    [
-                                                                        'Si' => 'Si',
-                                                                        'No' => 'No',
-                                                                        'En Desarrollo' => 'En Desarrollo',
-                                                                    ],
-                                                                    old('manualMantenimiento'),
-                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
-                                                                ) !!}
-                                                                @error('manualMantenimiento')
-                                                                    <small class="text-danger">{{ $message }}</small>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
-                                                            <div class="form-group">
-                                                                <label for="">¿El sistema cuenta con una política
-                                                                    de privacidad?*:</label>
-                                                                {!! Form::select(
-                                                                    'politicaPrivacidad',
-                                                                    [
-                                                                        'Si' => 'Si',
-                                                                        'No' => 'No',
-                                                                        'En Desarrollo' => 'En Desarrollo',
-                                                                        'Campo Vacio' => 'Campo Vacio',
-                                                                        'Aviso de Privacidad' => 'Aviso de Privacidad',
-                                                                    ],
-                                                                    old('politicaPrivacidad'),
-                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
-                                                                ) !!}
-                                                                @error('politicaPrivacidad')
-                                                                    <small class="text-danger">{{ $message }}</small>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <h4>Subir Documentación del Sistema.</h4>
-
-                                                    <div class="row">
-                                                        @for ($i = 0; $i < count($nombreArchivo); $i++)
-                                                            <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                <div class="form-group">
-                                                                    <label
-                                                                        for="nombreArchivo{{ $i }}">{{ $nombreArchivo[$i] }}</label>
-                                                                    {!! Form::file('nombreArchivo[]', ['class' => 'form-control', 'multiple' => true, 'id' => "nombreArchivo{$i}"]) !!}
-
-                                                                </div>
-                                                            </div>
-                                                        @endfor
-                                                    </div>
-                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                        <div style="flex-grow: 1;">
-                                                            <p>* Campos Obligatorios</p>
-                                                        </div>
-                                                        <div class="d-flex flex-column flex-md-row justify-content-md-end">
-                                                            <input class="btn btn-info ms-md-2" type="reset"
-                                                                value="Restablecer" style="margin: 3%">
-                                                            <input class="btn btn-success ms-md-2" type="submit"
-                                                                value="Guardar" style="margin: 3%">
-                                                        </div>
-                                                    </div>
-                                                    {!! Form::close() !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="carousel-item">
                                     <h2 class="page__heading text-center" style="padding: 1%;">Seguridad.</h2>
                                     <div class="section-body">
                                         <div class="row">
@@ -981,87 +831,149 @@
                                 </div>
 
                                 <div class="carousel-item">
-                                    <h2 class="page__heading text-center" style="padding: 1%;">Datos Personales Incluidos
-                                        en el
-                                        Sistema.</h2>
+                                    <h2 class="page__heading text-center" style="padding: 1%;">Datos Personales Incluidos en el Sistema.</h2>
                                     <div class="section-body">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="card-body">
-                                                    @if ($errors->any())
-                                                        <div class="alert alert-dark alert-dismissible fade show"
-                                                            role="alert">
-                                                            <strong>¡Revise los campos!</strong>
-                                                            @foreach ($errors->all() as $error)
-                                                                <span
-                                                                    class="badge badge-danger">{{ $error }}</span>
-                                                            @endforeach
-                                                            <button type="button" class="close" data-dismiss="alert"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                    @endif
 
-                                                    {!! Form::open(['route' => ['datosPersonal.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
+                                                    {!! Form::open(['route' => ['datosPersonal.store', 'id' => $sistema->id], 'method' => 'POST', 'class' => 'form-validation',
+                                                    'id' => 'datosPersonalesForm',]) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">¿El sistema maneja datos
-                                                                    personales?*:</label>
-                                                                {!! Form::text('manejoDatosPersonales', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                <label for="">¿El sistema maneja datos personales?*:</label>
+                                                                {!! Form::select(
+                                                                    'manejoDatosPersonales',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('manejoDatosPersonales'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('manejoDatosPersonales')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Fundamento legal*:</label>
-                                                                {!! Form::text('fundamentoLegal', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::textarea('fundamentoLegal', old('fundamentoLegal'), ['class' => 'form-control', 'rows' => 1, 'required' => 'required', 'placeholder' => 'Ingrese el fundamento']) !!}
+                                                                @error('fundamentoLegal')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Tipo de datos
-                                                                    personales*:</label>
-                                                                {!! Form::text('tipoDatosPersonales', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                <label for="">Tipo de datos personales*:</label>
+                                                                {!! Form::textarea('tipoDatosPersonales', old('tipoDatosPersonales'), ['class' => 'form-control', 'rows' => 1, 'required' => 'required', 'placeholder' => 'Ingrese el tipo']) !!}
+                                                                @error('tipoDatosPersonales')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Formas de obtención de los
-                                                                    datos
-                                                                    personales*:</label>
-                                                                {!! Form::text('formaObtencion', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                <label for="">Formas de obtención de los datos personales*:</label>
+                                                                {!! Form::select(
+                                                                    'formaObtencion',
+                                                                    [
+                                                                        'Directa' => 'Directa',
+                                                                        'Indirecta' => 'Indirecta',
+                                                                        'Formulario' => 'Formulario',
+                                                                        'No aplica' => 'No aplica',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('formaObtencion'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('formaObtencion')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Portabilidad de datos*:</label>
-                                                                {!! Form::text('portabilidadDatos', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'portabilidadDatos',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'No Aplica' => 'No Aplica',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('portabilidadDatos'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('portabilidadDatos')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Transferencia de
                                                                     datos*:</label>
-                                                                {!! Form::text('transferenciaDatos', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'transferenciaDatos',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'No Aplica' => 'No Aplica',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('transferenciaDatos'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('transferenciaDatos')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
+                                                        <div class="col-xs-12 col-sm-6 col-md-6 col-xl-6">
                                                             <div class="form-group">
                                                                 <label for="">Tipo de soporte*:</label>
-                                                                {!! Form::text('tipoSoporte', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'tipoSoporte',
+                                                                    [
+                                                                        'Digital' => 'Digital',
+                                                                        'No Aplica' => 'No Aplica',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('tipoSoporte'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('tipoSoporte')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
+                                                        <div class="col-xs-12 col-sm-6 col-md-6 col-xl-6">
                                                             <div class="form-group">
-                                                                <label for="">El sistema cuenta con Aviso
-                                                                    de
-                                                                    Privacidad*:</label>
-                                                                {!! Form::text('avisoPrivacidad', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                <label for="">El sistema cuenta con Aviso de Privacidad*:</label>
+                                                                {!! Form::select(
+                                                                    'avisoPrivacidad',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'No Aplica' => 'No Aplica',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('avisoPrivacidad'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('avisoPrivacidad')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1089,41 +1001,58 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="card-body">
-                                                    @if ($errors->any())
-                                                        <div class="alert alert-dark alert-dismissible fade show"
-                                                            role="alert">
-                                                            <strong>¡Revise los campos!</strong>
-                                                            @foreach ($errors->all() as $error)
-                                                                <span
-                                                                    class="badge badge-danger">{{ $error }}</span>
-                                                            @endforeach
-                                                            <button type="button" class="close" data-dismiss="alert"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                    @endif
-
-                                                    {!! Form::open(['route' => ['mantenimiento.store', 'id' => $sistema->id], 'method' => 'POST']) !!}
+                                                    {!! Form::open(['route' => ['mantenimiento.store', 'id' => $sistema->id], 'method' => 'POST', 'class' => 'form-validation',
+                                                    'id' => 'mantenimientoForm',]) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">¿El sistema requiere
                                                                     mantenimiento?*:</label>
-                                                                {!! Form::text('requiereMantenimiento', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'requiereMantenimiento',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'No Aplica' => 'No Aplica',
+                                                                        'Eventualmente' => 'Eventualmente',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('requiereMantenimiento'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('requiereMantenimiento')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Tipo de mantenimiento*:</label>
-                                                                {!! Form::text('tipoMantenimiento', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'tipoMantenimiento',
+                                                                    [
+                                                                        'Evolutivo' => 'Evolutivo',
+                                                                        'No Aplica' => 'No Aplica',
+                                                                        'Correctivo' => 'Correctivo',
+                                                                        'Predictivo' => 'Predictivo',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('tipoMantenimiento'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('tipoMantenimiento')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Descripción del
                                                                     mantenimiento*:</label>
-                                                                {!! Form::text('descripcionMantenimiento', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::text('descripcionMantenimiento', old('descripcionMantenimiento'), ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ingrese la descripción']) !!}
+                                                                @error('descripcionMantenimiento')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1131,31 +1060,204 @@
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Periocidad de mantenimiento*:</label>
-                                                                {!! Form::text('periocidadMantenimiento', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::select(
+                                                                    'periocidadMantenimiento',
+                                                                    [
+                                                                        'No Aplica' => 'No Aplica',
+                                                                        'Por Evento' => 'Por Evento',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                        '1 vez al año' => '1 vez al año',
+                                                                        '1 a 2 veces al año' => '1 a 2 veces al año',
+                                                                        '3 a 4 veces al año' => '3 a 4 veces al año',
+                                                                        '4 a 6 veces al año' => '4 a 6 veces al año',
+                                                                        '6 a 12 veces al año' => '6 a 12 veces al año',
+                                                                    ],
+                                                                    old('periocidadMantenimiento'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('periocidadMantenimiento')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
                                                                 <label for="">Área responsable*:</label>
-                                                                {!! Form::text('areaResponsable', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                {!! Form::text('areaResponsable', old('areaResponsable'), ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ingrese el área']) !!}
+                                                                @error('areaResponsable')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Nombre del técnico
-                                                                    responsable*:</label>
-                                                                {!! Form::text('nombreTecnicoResponsable', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                <label for="">Nombre del técnico responsable*:</label>
+                                                                {!! Form::text('nombreTecnicoResponsable', old('nombreTecnicoResponsable'), ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ingrese el nombre']) !!}
+                                                                @error('nombreTecnicoResponsable')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+                                                            <div class="form-group">
+                                                                <label for="">Nombre del coordinador de mantenimiento*:</label>
+                                                                {!! Form::text('nombreCoordinador', old('nombreCoordinador'), ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ingrese el nombre']) !!}
+                                                                @error('nombreCoordinador')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                        <div style="flex-grow: 1;">
+                                                            <p>* Campos Obligatorios</p>
+                                                        </div>
+                                                        <div class="d-flex flex-column flex-md-row justify-content-md-end">
+                                                            <input class="btn btn-info ms-md-2" type="reset"
+                                                                value="Restablecer" style="margin: 3%">
+                                                            <input class="btn btn-success ms-md-2" type="submit"
+                                                                value="Guardar" style="margin: 3%">
+                                                        </div>
+                                                    </div>
+                                                    {!! Form::close() !!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="carousel-item">
+                                    <h2 class="page__heading text-center" style="padding: 1%;">Documentación.</h2>
+                                    <div class="section-body">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="card-body" id='documentoFormContainer'>
+                                                    {!! Form::open([
+                                                        'route' => ['documento.store', $sistema->id],
+                                                        'method' => 'POST',
+                                                        'enctype' => 'multipart/form-data',
+                                                    ]) !!}
+
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+                                                            <div class="form-group">
+                                                                <label for="">¿El sistema se encuentra documentado
+                                                                    con base en la normatividad de la Adminstración Pública
+                                                                    General?*:</label>
+                                                                {!! Form::select(
+                                                                    'documentado',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('documentado'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('documentado')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
-                                                                <label for="">Nombre del coordinador de
-                                                                    mantenimiento*:</label>
-                                                                {!! Form::text('nombreCoordinador', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                                                <label for="">¿El sistema tiene un manual de
+                                                                    usuario?*:</label>
+                                                                {!! Form::select(
+                                                                    'manualUsuario',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('manualUsuario'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('manualUsuario')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
                                                         </div>
+                                                        <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
+                                                            <div class="form-group">
+                                                                <label for="">¿El sistema tiene un manual
+                                                                    técnico?*:</label>
+                                                                {!! Form::select(
+                                                                    'manualTecnico',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('manualTecnico'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('manualTecnico')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
+                                                            <div class="form-group">
+                                                                <label for="">¿Existe un manual de
+                                                                    mantenimiento?*:</label>
+                                                                {!! Form::select(
+                                                                    'manualMantenimiento',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                    ],
+                                                                    old('manualMantenimiento'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('manualMantenimiento')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+                                                            <div class="form-group">
+                                                                <label for="">¿El sistema cuenta con una política
+                                                                    de privacidad?*:</label>
+                                                                {!! Form::select(
+                                                                    'politicaPrivacidad',
+                                                                    [
+                                                                        'Si' => 'Si',
+                                                                        'No' => 'No',
+                                                                        'En Desarrollo' => 'En Desarrollo',
+                                                                        'Campo Vacio' => 'Campo Vacio',
+                                                                        'Aviso de Privacidad' => 'Aviso de Privacidad',
+                                                                    ],
+                                                                    old('politicaPrivacidad'),
+                                                                    ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Seleccione una opción'],
+                                                                ) !!}
+                                                                @error('politicaPrivacidad')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <h4>Subir Documentación del Sistema.</h4>
+
+                                                    <div class="row">
+                                                        @for ($i = 0; $i < count($nombreArchivo); $i++)
+                                                            <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
+                                                                <div class="form-group">
+                                                                    <label
+                                                                        for="nombreArchivo{{ $i }}">{{ $nombreArchivo[$i] }}</label>
+                                                                    {!! Form::file('nombreArchivo[]', ['class' => 'form-control', 'multiple' => true, 'id' => "nombreArchivo{$i}"]) !!}
+
+                                                                </div>
+                                                            </div>
+                                                        @endfor
                                                     </div>
                                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                         <div style="flex-grow: 1;">
@@ -1223,19 +1325,6 @@
             });
         </script>
     @endif
-
-    @if (session('success_documento_creado'))
-        <script>
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: '¡Documentos registrados exitosamente!',
-                showConfirmButton: false,
-                timer: 3500
-            });
-        </script>
-    @endif
-
 
     <script>
         function setupFormValidation(formId, successCallback) {
@@ -1307,14 +1396,20 @@
             showSuccessMessage(successMessage);
         });
 
-        setupFormValidation('documentacionForm', function(successMessage) {
-            // Función específica para el otro formulario
-            showSuccessMessage(successMessage);
-        });
-
         setupFormValidation('seguridadForm', function(successMessage) {
             // Función específica para el otro formulario
             showSuccessMessage(successMessage);
         });
+
+        setupFormValidation('datosPersonalesForm', function(successMessage) {
+            // Función específica para el otro formulario
+            showSuccessMessage(successMessage);
+        });
+
+        setupFormValidation('mantenimientoForm', function(successMessage) {
+            // Función específica para el otro formulario
+            showSuccessMessage(successMessage);
+        });
+        
     </script>
 @stop

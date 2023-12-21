@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->string('requiereMantenimiento', 20);
             $table->string('tipoMantenimiento', 20);
-            $table->string('descripcionMantenimiento', 150);
+            $table->string('descripcionMantenimiento', 255);
             $table->string('periocidadMantenimiento', 100);
-            $table->string('areaResponsable', 100);
-            $table->string('nombreTecnicoResponsable', 100);
-            $table->string('nombreCoordinador', 100);
+            $table->string('areaResponsable', 255);
+            $table->string('nombreTecnicoResponsable', 255);
+            $table->string('nombreCoordinador', 255);
 
             //Creación del campo que será la FK
             $table->unsignedBigInteger('idSistema');

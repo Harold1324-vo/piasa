@@ -68,12 +68,11 @@ class SistemaController extends Controller
         $this->validate($request, [
             'nombreSistema' => 'required|string|min:3|max:255',
             'descripcion' => 'required|string|min:3|max:500',
-            'siglas' => 'required|string|min:3|max:255',
+            'siglas' => 'required|string|min:2|max:255',
             'clasificacion' => 'required|string|min:3|max:255',
             'areaDesarrolladora' => 'required|string|min:3|max:255',
             'estadoActivo' => 'required|string|min:2|max:255',
             'url' => 'required|string|min:3|max:255',
-            'consecutivo' => 'required|string|min:3|max:255'
         ]);
 
         //Obtener el ID del usuario autenticado
@@ -86,7 +85,6 @@ class SistemaController extends Controller
         $areaDesarrolladora = $request->input('areaDesarrolladora');
         $estadoActivo = $request->input('estadoActivo');
         $url = $request->input('url');
-        $consecutivo = $request->input('consecutivo');
 
         $sistemaRegistro = new Sistema();
 
@@ -99,7 +97,6 @@ class SistemaController extends Controller
         $sistemaRegistro->areaDesarrolladora = $areaDesarrolladora;
         $sistemaRegistro->estadoActivo = $estadoActivo;
         $sistemaRegistro->url = $url;
-        $sistemaRegistro->consecutivo = $consecutivo;
 
         $sistemaRegistro->save();
 

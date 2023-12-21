@@ -57,6 +57,7 @@ Route::get('/informacion/{ano}/mostrar-sistemas', [SistemaController::class, 'mo
 
 
 //Rutas para crear registrar los datos del sistema
+Route::post('sistema/{id}', [DocumentoController::class, 'store'])->name('documento.store');
 Route::post('rolsistemas/{id}', [RolSistemasController::class, 'store'])->name('rolsistemas.store');
 Route::post('informacion/{id}', [InformacionController::class, 'store'])->name('informacion.store');
 Route::post('caracteristica/{id}', [CaracteristicaController::class, 'store'])->name('caracteristica.store');

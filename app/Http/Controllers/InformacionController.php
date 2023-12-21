@@ -48,6 +48,7 @@ class InformacionController extends Controller
             'interaccionDependencias' => 'required|string|max:255',
             'interaccionOtrasAreas' => 'required|string|max:255',
             'migrado' => 'required',
+            'consecutivo' => ''
         ]);
 
         $anoComienzoOperaciones = $request->input('anoComienzoOperaciones');
@@ -65,6 +66,7 @@ class InformacionController extends Controller
         $interaccionDependencias = $request->input('interaccionDependencias');
         $interaccionOtrasAreas = $request->input('interaccionOtrasAreas');
         $migrado = $request->input('migrado');
+        $consecutivo = $request->input('consecutivo');
 
         $informacion = new Informacion();
 
@@ -83,6 +85,7 @@ class InformacionController extends Controller
         $informacion->interaccionDependencias=$interaccionDependencias;
         $informacion->interaccionOtrasAreas=$interaccionOtrasAreas;
         $informacion->migrado=$migrado;
+        $informacion->consecutivo = $consecutivo;
         $informacion->idSistema = $sistema->id;
         
         $informacion->save();

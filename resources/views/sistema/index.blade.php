@@ -83,3 +83,21 @@
         </div>
     </section>
 @stop
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Script de SweetAlert -->
+@if (session('success_documento_registrado'))
+<script>
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: '¡Documento y Sistema registrado exitosamente!',
+        showConfirmButton: false,
+        timer: 3500
+    });
+</script>
+@endif
+@stop
+
