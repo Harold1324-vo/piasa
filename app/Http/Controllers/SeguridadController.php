@@ -107,7 +107,7 @@ class SeguridadController extends Controller
 
         $seguridad->save();
 
-        return redirect()->back()->with('Mensaje', 'Datos actualizados correctamente');
+        return response()->json(['success' => '¡Seguridad actualizada exitosamente!']);
     }
 
     /**

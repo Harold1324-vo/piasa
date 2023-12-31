@@ -106,14 +106,14 @@ class RolSistemasController extends Controller
 
         // Valida los datos del formulario
         $request->validate([
-            'nombreLiderProyecto' => 'required',
-            'puestoLiderProyecto' => 'required',
-            'nombreAdministradorProyecto' => 'required',
-            'puestoAdministradorProyecto' => 'required',
-            'nombreDesarrollador' => 'required',
-            'puestoDesarrollador' => 'required',
-            'areaUsuaria' => 'required',
-            'puestoUsuario' => 'required',
+            'nombreLiderProyecto' => 'required|string|min:8|max:255',
+            'puestoLiderProyecto' => 'required|string|min:8|max:255',
+            'nombreAdministradorProyecto' => 'required|string|min:8|max:255',
+            'puestoAdministradorProyecto' => 'required|string|min:8|max:255',
+            'nombreDesarrollador' => 'required|string|min:5|max:255',
+            'puestoDesarrollador' => 'required|string|min:5|max:255',
+            'areaUsuaria' => 'required|string|min:3|max:255',
+            'puestoUsuario' => 'required|string|min:5|max:255',
         ]);
 
         // Busca y actualiza el rolSistemas existente
@@ -130,7 +130,7 @@ class RolSistemasController extends Controller
 
         $rolSistemas->save();
 
-        return redirect()->back()->with('Mensaje', 'Datos actualizados correctamente');
+        return response()->json(['success' => '¡Roles actualizados exitosamente!']);
     }
 
     /**

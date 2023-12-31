@@ -139,7 +139,7 @@ class DocumentoController extends Controller
 
         $documento->save();
 
-        return redirect()->back()->with('Mensaje', 'Datos actualizados correctamente');
+        return redirect()->route('sistema.index')->with(['success_documento_actualizado' => '¡Documento y Sistema actualizado exitosamente!']);
     }
 
     /**

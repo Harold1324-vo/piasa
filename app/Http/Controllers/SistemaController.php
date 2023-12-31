@@ -168,21 +168,23 @@ class SistemaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Sistema $sistema)
+    public function update(Request $request, $id)
     {
-        request()->validate([
-            'nombreSistema' => 'required',
-            'descripcion' => 'required',
-            'siglas' => 'required',
-            'clasificacion' => 'required',
-            'areaDesarrolladora' => 'required',
-            'estadoActivo' => 'required',
-            'url' => 'required',
-            'consecutivo' => 'required'
+        $sistema = Sistema::findOrFail($id);
+
+        $informacion = request()->validate([
+            'nombreSistema' => 'required|string|min:3|max:255',
+            'descripcion' => 'required|string|min:3|max:500',
+            'siglas' => 'required|string|min:2|max:255',
+            'clasificacion' => 'required|string|min:3|max:255',
+            'areaDesarrolladora' => 'required|string|min:3|max:255',
+            'estadoActivo' => 'required|string|min:2|max:255',
+            'url' => 'required|string|min:3|max:255',
         ]);
 
-        $sistema->update($request->all());
-        return redirect()->route('sistema.index');
+        $sistema->update($informacion);
+        
+        return response()->json(['success' => '¡Datos del sistema actualizados exitosamente!']);
     }
 
     /* public function guardarRespuesta(Request $request, $id)

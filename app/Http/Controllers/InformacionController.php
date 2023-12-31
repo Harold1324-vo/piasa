@@ -161,7 +161,7 @@ class InformacionController extends Controller
 
         $informacion->save();
 
-        return redirect()->back()->with(['success_informacion_registrado' => '¡Información registrada exitosamente!']);
+        return response()->json(['success' => '¡Información actualizada exitosamente!']);
 
     }
 

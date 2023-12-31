@@ -122,7 +122,7 @@ class DatosPersonalController extends Controller
 
         $datosPersonal->save();
 
-        return redirect()->back()->with('Mensaje', 'Datos actualizados correctamente');
+        return response()->json(['success' => '¡Datos Personales actualizados exitosamente!']);
 
     }
 

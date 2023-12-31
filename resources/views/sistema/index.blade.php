@@ -99,5 +99,17 @@
     });
 </script>
 @endif
+
+@if (session('success_documento_actualizado'))
+<script>
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: '¡Documento y Sistema actualizado exitosamente!',
+        showConfirmButton: false,
+        timer: 3500
+    });
+</script>
+@endif
 @stop
 

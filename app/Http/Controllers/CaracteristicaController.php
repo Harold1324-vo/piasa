@@ -108,101 +108,6 @@ class CaracteristicaController extends Controller
         // Busca el sistema
         $sistema = Sistema::findOrFail($id);
 
-        $campos2 = [
-            [
-                'label' => 'Sistema Operativo',
-                'nombre' => 'sistemaOperativo',
-                'tipo' => 'text',
-                'placeholder' => 'Ingrese un sistema',
-            ],
-            [
-                'label' => 'Control de Versiones',
-                'nombre' => 'controlVersiones',
-                'tipo' => 'select',
-                'opciones' => [
-                    'Git' => 'Git',
-                    'Otro' => 'Otro',
-                    'No Aplica' => 'No Aplica',
-                    'En Desarrollo' => 'En Desarrollo',
-                    'Apache Subversión' => 'Apache Subversión',
-                ],
-                'placeholder' => 'Seleccione un control',
-            ],
-            [
-                'label' => 'Versión del sistema',
-                'nombre' => 'versionSistema',
-                'tipo' => 'text',
-                'placeholder' => 'Ingrese la versión',
-            ],
-            [
-                'label' => 'Lenguaje de programación del sistema',
-                'nombre' => 'lenguajeProgramacion',
-                'tipo' => 'text',
-                'placeholder' => 'Ingrese un lenguaje',
-            ],
-            [
-                'label' => 'Interacción con otro lenguaje',
-                'nombre' => 'otroLenguajeProgramacion',
-                'tipo' => 'text',
-                'placeholder' => 'Especifique un lenguaje',
-            ],
-            [
-                'label' => 'Frameworks',
-                'nombre' => 'frameworks',
-                'tipo' => 'text',
-                'placeholder' => 'Ingrese un framework',
-            ],
-            [
-                'label' => 'Despliegue',
-                'nombre' => 'despliegue',
-                'tipo' => 'select',
-                'opciones' => [
-                    'Otro' => 'Otro',
-                    'Nginx' => 'Nginx',
-                    'Apache' => 'Apache',
-                    'En Desarrollo' => 'En Desarrollo',
-                    'Microsoft Windows' => 'Microsoft Windows',
-                ],
-                'placeholder' => 'Seleccione una opción',
-            ],
-            [
-                'label' => 'Si es otro servidor web, especificarlo',
-                'nombre' => 'otroServidorWeb',
-                'tipo' => 'text',
-                'placeholder' => 'Ingrese el servidor',
-            ],
-            [
-                'label' => 'Manejador de base de datos',
-                'nombre' => 'manejadorBD',
-                'tipo' => 'text',
-                'placeholder' => 'Ingrese el manejador',
-            ],
-            [
-                'label' => 'Nombre de la base de datos',
-                'nombre' => 'nombreBD',
-                'tipo' => 'text',
-                'placeholder' => 'Ingrese el nombre',
-            ],
-            [
-                'label' => 'Plataforma de desarrollo de software',
-                'nombre' => 'plataformaDesarrollo',
-                'tipo' => 'text',
-                'placeholder' => 'Ingrese la plataforma',
-            ],
-            [
-                'label' => 'El sistema hace uso de una API?',
-                'nombre' => 'usoAPI',
-                'tipo' => 'select',
-                'opciones' => [
-                    'Si' => 'Si',
-                    'No' => 'No',
-                    'No Aplica' => 'No Aplica',
-                    'En Desarrollo' => 'En Desarrollo',
-                ],
-                'placeholder' => 'Seleccione una opción',
-            ],
-        ];
-
         // Valida los datos del formulario
         $request->validate([
             'sistemaOperativo' => 'required|string|min:2|max:255',
@@ -236,9 +141,8 @@ class CaracteristicaController extends Controller
         $caracteristica->usoAPI = $request->input('usoAPI');
 
         $caracteristica->save();
-
-
-        return redirect()->back()->with(['success_caracteristica_registrado' => '¡Características registradas exitosamente!', 'campos' => $campos2]);        
+    
+        return response()->json(['success' => '¡Características actualizadas exitosamente!']);   
 
     }
 
