@@ -161,7 +161,11 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="card-body">
-                                                    {!! Form::model($sistema->rolesSistemas, ['route' => ['rolsistemas.update', $sistema->id], 'method' => 'PUT', 'id' => 'rolesForm']) !!}
+                                                    {!! Form::model($sistema->rolesSistemas, [
+                                                        'route' => ['rolsistemas.update', $sistema->id],
+                                                        'method' => 'PUT',
+                                                        'id' => 'rolesForm',
+                                                    ]) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
@@ -299,7 +303,11 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="card-body">
-                                                    {!! Form::model($sistema->informacion, ['route' => ['informacion.update', $sistema->id], 'method' => 'PUT', 'id' => 'informacionForm']) !!}
+                                                    {!! Form::model($sistema->informacion, [
+                                                        'route' => ['informacion.update', $sistema->id],
+                                                        'method' => 'PUT',
+                                                        'id' => 'informacionForm',
+                                                    ]) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
@@ -611,7 +619,8 @@
                                                 <div class="card-body">
                                                     {!! Form::model($sistema->caracteristica, [
                                                         'route' => ['caracteristica.update', $sistema->id],
-                                                        'method' => 'PUT', 'id' => 'caracteristicasForm'
+                                                        'method' => 'PUT',
+                                                        'id' => 'caracteristicasForm',
                                                     ]) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
@@ -826,7 +835,11 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="card-body">
-                                                    {!! Form::model($sistema->seguridad, ['route' => ['seguridad.update', $sistema->id], 'method' => 'PUT', 'id' => 'seguridadForm']) !!}
+                                                    {!! Form::model($sistema->seguridad, [
+                                                        'route' => ['seguridad.update', $sistema->id],
+                                                        'method' => 'PUT',
+                                                        'id' => 'seguridadForm',
+                                                    ]) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
                                                             <div class="form-group">
@@ -961,7 +974,11 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="card-body">
-                                                    {!! Form::model($sistema->datosPersonal, ['route' => ['datosPersonal.update', $sistema->id], 'method' => 'PUT', 'id' => 'datosPersonalesForm']) !!}
+                                                    {!! Form::model($sistema->datosPersonal, [
+                                                        'route' => ['datosPersonal.update', $sistema->id],
+                                                        'method' => 'PUT',
+                                                        'id' => 'datosPersonalesForm',
+                                                    ]) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
@@ -1136,7 +1153,11 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="card-body">
-                                                    {!! Form::model($sistema->mantenimiento, ['route' => ['mantenimiento.update', $sistema->id], 'method' => 'PUT', 'id' => 'mantenimientoForm']) !!}
+                                                    {!! Form::model($sistema->mantenimiento, [
+                                                        'route' => ['mantenimiento.update', $sistema->id],
+                                                        'method' => 'PUT',
+                                                        'id' => 'mantenimientoForm',
+                                                    ]) !!}
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
                                                             <div class="form-group">
@@ -1391,21 +1412,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                    <h4>Subir Documentación del Sistema.</h4>
-
-                                                    <div class="row">
-                                                        @for ($i = 0; $i < count($nombreArchivo); $i++)
-                                                            <div class="col-xs-12 col-sm-4 col-md-4 col-xl-4">
-                                                                <div class="form-group">
-                                                                    <label
-                                                                        for="nombreArchivo{{ $i }}">{{ $nombreArchivo[$i] }}</label>
-                                                                    {!! Form::file('nombreArchivo[]', ['class' => 'form-control', 'multiple' => true, 'id' => "nombreArchivo{$i}"]) !!}
-
-                                                                </div>
-                                                            </div>
-                                                        @endfor
-                                                    </div>
                                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                         <div style="flex-grow: 1;">
                                                             <p>* Campos Obligatorios</p>
@@ -1490,7 +1496,8 @@
             function handleValidationErrors(formId, errors) {
                 $.each(errors, function(key, value) {
                     removeErrorMessages(formId, key);
-                    $('#' + formId + ' [name="' + key + '"]').after('<small style="color: red;">' + value[0] + '</small>');
+                    $('#' + formId + ' [name="' + key + '"]').after('<small style="color: red;">' + value[0] +
+                        '</small>');
                 });
             }
 
@@ -1513,7 +1520,7 @@
         setupFormValidation('datosForm', function(successMessage) {
             showSuccessMessage(successMessage);
         });
-        
+
         setupFormValidation('rolesForm', function(successMessage) {
             showSuccessMessage(successMessage);
         });

@@ -19,6 +19,7 @@ return new class extends Migration
 
             //Creación del campo que será la FK
             $table->unsignedBigInteger('idSistema');
+            $table->foreign('idSistema')->references('id')->on('sistemas')->onDelete('cascade');
             //Asignación de FK, se hace referencia a la llave primaria, se especifica la tabla
             $table->foreign('idSistema')->references('id')->on('sistemas');
 

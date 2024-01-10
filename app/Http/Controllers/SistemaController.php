@@ -242,6 +242,16 @@ class SistemaController extends Controller
      */
     public function destroy(Sistema $sistema)
     {
+        // Eliminar registros relacionados en la tabla
+        $sistema->rolesSistemas()->delete();
+        $sistema->informacion()->delete();
+        $sistema->caracteristica()->delete();
+        $sistema->documento()->delete();
+        $sistema->archivos()->delete();
+        $sistema->seguridad()->delete();
+        $sistema->datosPersonal()->delete();
+        $sistema->mantenimiento()->delete();
+        
         $sistema->delete();
         return redirect()->route('sistema.index');
     }

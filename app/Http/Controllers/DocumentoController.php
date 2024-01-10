@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 use App\Models\Documento;
 use Illuminate\Http\Request;
@@ -49,13 +50,13 @@ class DocumentoController extends Controller
 
         $documento = new Documento();
 
-        $documento->documentado=$documentado;
-        $documento->manualUsuario=$manualUsuario;
-        $documento->manualTecnico=$manualTecnico;
-        $documento->manualMantenimiento=$manualMantenimiento;
-        $documento->politicaPrivacidad=$politicaPrivacidad;
+        $documento->documentado = $documentado;
+        $documento->manualUsuario = $manualUsuario;
+        $documento->manualTecnico = $manualTecnico;
+        $documento->manualMantenimiento = $manualMantenimiento;
+        $documento->politicaPrivacidad = $politicaPrivacidad;
         $documento->idSistema = $sistema->id;
-        
+
         $documento->save();
 
         // Obtener el sistema asociada al ID
@@ -66,7 +67,7 @@ class DocumentoController extends Controller
             // Obtener los archivos adjuntos del formulario
             $archivos = $request->file('nombreArchivo');
             $archivoPaths = []; // Variable para almacenar los paths de los archivos guardados
-        
+
             foreach ($archivos as $archivo) {
                 $archivoNombreOriginal = $archivo->getClientOriginalName(); // Obtener el nombre original del archivo
                 $archivoExtension = $archivo->getClientOriginalExtension(); // Obtener la extensión del archivo
@@ -88,7 +89,6 @@ class DocumentoController extends Controller
         }
 
         return redirect()->route('sistema.index')->with(['success_documento_registrado' => '¡Documento y Sistema registrado exitosamente!']);
-
     }
 
     /**
@@ -142,6 +142,7 @@ class DocumentoController extends Controller
         return redirect()->route('sistema.index')->with(['success_documento_actualizado' => '¡Documento y Sistema actualizado exitosamente!']);
     }
 
+
     /**
      * Remove the specified resource from storage.
      */
@@ -150,10 +151,9 @@ class DocumentoController extends Controller
         //
     }
 
-    public function guardarRespuesta(Request $request, $id){
+    public function guardarRespuesta(Request $request, $id)
+    {
         //Obtener la documentación asociada al ID
         $sistema = Sistema::findOrFail($id);
-
-
     }
 }
